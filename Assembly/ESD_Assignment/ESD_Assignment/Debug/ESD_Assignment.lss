@@ -1,0 +1,1750 @@
+
+AVRASM ver. 2.2.8  C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm Tue Oct 13 14:19:00 2026
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm(25): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm(25): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+                                 
+                                 ;==============================================================================
+                                 
+                                 ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
+                                 ;*************************************************************************
+                                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                                 ;* 
+                                 ;* Number            : AVR000
+                                 ;* File Name         : "m328Pdef.inc"
+                                 ;* Title             : Register/Bit Definitions for the ATmega328P
+                                 ;* Date              : 2011-02-09
+                                 ;* Version           : 2.35
+                                 ;* Support E-mail    : avr@atmel.com
+                                 ;* Target MCU        : ATmega328P
+                                 ;* 
+                                 ;* DESCRIPTION
+                                 ;* When including this file in the assembly program file, all I/O register 
+                                 ;* names and I/O register bit names appearing in the data book can be used.
+                                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                                 ;* SRAM is also defined 
+                                 ;* 
+                                 ;* The Register names are represented by their hexadecimal address.
+                                 ;* 
+                                 ;* The Register Bit names are represented by their bit number (0-7).
+                                 ;* 
+                                 ;* Please observe the difference in using the bit names with instructions
+                                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                                 ;* (skip if bit in register set/cleared). The following example illustrates
+                                 ;* this:
+                                 ;* 
+                                 ;* in    r16,PORTB             ;read PORTB latch
+                                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                                 ;* out   PORTB,r16             ;output to PORTB
+                                 ;* 
+                                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                                 ;* rjmp  TOV0_is_set           ;jump if set
+                                 ;* ...                         ;otherwise do something else
+                                 ;*************************************************************************
+                                 
+                                 #ifndef _M328PDEF_INC_
+                                 #define _M328PDEF_INC_
+                                 
+                                 
+                                 #pragma partinc 0
+                                 
+                                 ; ***** SPECIFY DEVICE ***************************************************
+                                 .device ATmega328P
+                                 #pragma AVRPART ADMIN PART_NAME ATmega328P
+                                 .equ	SIGNATURE_000	= 0x1e
+                                 .equ	SIGNATURE_001	= 0x95
+                                 .equ	SIGNATURE_002	= 0x0f
+                                 
+                                 #pragma AVRPART CORE CORE_VERSION V2E
+                                 
+                                 
+                                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                                 ; NOTE:
+                                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                                 ; and cannot be used with IN/OUT instructions
+                                 .equ	UDR0	= 0xc6	; MEMORY MAPPED
+                                 .equ	UBRR0L	= 0xc4	; MEMORY MAPPED
+                                 .equ	UBRR0H	= 0xc5	; MEMORY MAPPED
+                                 .equ	UCSR0C	= 0xc2	; MEMORY MAPPED
+                                 .equ	UCSR0B	= 0xc1	; MEMORY MAPPED
+                                 .equ	UCSR0A	= 0xc0	; MEMORY MAPPED
+                                 .equ	TWAMR	= 0xbd	; MEMORY MAPPED
+                                 .equ	TWCR	= 0xbc	; MEMORY MAPPED
+                                 .equ	TWDR	= 0xbb	; MEMORY MAPPED
+                                 .equ	TWAR	= 0xba	; MEMORY MAPPED
+                                 .equ	TWSR	= 0xb9	; MEMORY MAPPED
+                                 .equ	TWBR	= 0xb8	; MEMORY MAPPED
+                                 .equ	ASSR	= 0xb6	; MEMORY MAPPED
+                                 .equ	OCR2B	= 0xb4	; MEMORY MAPPED
+                                 .equ	OCR2A	= 0xb3	; MEMORY MAPPED
+                                 .equ	TCNT2	= 0xb2	; MEMORY MAPPED
+                                 .equ	TCCR2B	= 0xb1	; MEMORY MAPPED
+                                 .equ	TCCR2A	= 0xb0	; MEMORY MAPPED
+                                 .equ	OCR1BL	= 0x8a	; MEMORY MAPPED
+                                 .equ	OCR1BH	= 0x8b	; MEMORY MAPPED
+                                 .equ	OCR1AL	= 0x88	; MEMORY MAPPED
+                                 .equ	OCR1AH	= 0x89	; MEMORY MAPPED
+                                 .equ	ICR1L	= 0x86	; MEMORY MAPPED
+                                 .equ	ICR1H	= 0x87	; MEMORY MAPPED
+                                 .equ	TCNT1L	= 0x84	; MEMORY MAPPED
+                                 .equ	TCNT1H	= 0x85	; MEMORY MAPPED
+                                 .equ	TCCR1C	= 0x82	; MEMORY MAPPED
+                                 .equ	TCCR1B	= 0x81	; MEMORY MAPPED
+                                 .equ	TCCR1A	= 0x80	; MEMORY MAPPED
+                                 .equ	DIDR1	= 0x7f	; MEMORY MAPPED
+                                 .equ	DIDR0	= 0x7e	; MEMORY MAPPED
+                                 .equ	ADMUX	= 0x7c	; MEMORY MAPPED
+                                 .equ	ADCSRB	= 0x7b	; MEMORY MAPPED
+                                 .equ	ADCSRA	= 0x7a	; MEMORY MAPPED
+                                 .equ	ADCH	= 0x79	; MEMORY MAPPED
+                                 .equ	ADCL	= 0x78	; MEMORY MAPPED
+                                 .equ	TIMSK2	= 0x70	; MEMORY MAPPED
+                                 .equ	TIMSK1	= 0x6f	; MEMORY MAPPED
+                                 .equ	TIMSK0	= 0x6e	; MEMORY MAPPED
+                                 .equ	PCMSK1	= 0x6c	; MEMORY MAPPED
+                                 .equ	PCMSK2	= 0x6d	; MEMORY MAPPED
+                                 .equ	PCMSK0	= 0x6b	; MEMORY MAPPED
+                                 .equ	EICRA	= 0x69	; MEMORY MAPPED
+                                 .equ	PCICR	= 0x68	; MEMORY MAPPED
+                                 .equ	OSCCAL	= 0x66	; MEMORY MAPPED
+                                 .equ	PRR	= 0x64	; MEMORY MAPPED
+                                 .equ	CLKPR	= 0x61	; MEMORY MAPPED
+                                 .equ	WDTCSR	= 0x60	; MEMORY MAPPED
+                                 .equ	SREG	= 0x3f
+                                 .equ	SPL	= 0x3d
+                                 .equ	SPH	= 0x3e
+                                 .equ	SPMCSR	= 0x37
+                                 .equ	MCUCR	= 0x35
+                                 .equ	MCUSR	= 0x34
+                                 .equ	SMCR	= 0x33
+                                 .equ	ACSR	= 0x30
+                                 .equ	SPDR	= 0x2e
+                                 .equ	SPSR	= 0x2d
+                                 .equ	SPCR	= 0x2c
+                                 .equ	GPIOR2	= 0x2b
+                                 .equ	GPIOR1	= 0x2a
+                                 .equ	OCR0B	= 0x28
+                                 .equ	OCR0A	= 0x27
+                                 .equ	TCNT0	= 0x26
+                                 .equ	TCCR0B	= 0x25
+                                 .equ	TCCR0A	= 0x24
+                                 .equ	GTCCR	= 0x23
+                                 .equ	EEARH	= 0x22
+                                 .equ	EEARL	= 0x21
+                                 .equ	EEDR	= 0x20
+                                 .equ	EECR	= 0x1f
+                                 .equ	GPIOR0	= 0x1e
+                                 .equ	EIMSK	= 0x1d
+                                 .equ	EIFR	= 0x1c
+                                 .equ	PCIFR	= 0x1b
+                                 .equ	TIFR2	= 0x17
+                                 .equ	TIFR1	= 0x16
+                                 .equ	TIFR0	= 0x15
+                                 .equ	PORTD	= 0x0b
+                                 .equ	DDRD	= 0x0a
+                                 .equ	PIND	= 0x09
+                                 .equ	PORTC	= 0x08
+                                 .equ	DDRC	= 0x07
+                                 .equ	PINC	= 0x06
+                                 .equ	PORTB	= 0x05
+                                 .equ	DDRB	= 0x04
+                                 .equ	PINB	= 0x03
+                                 
+                                 
+                                 ; ***** BIT DEFINITIONS **************************************************
+                                 
+                                 ; ***** USART0 ***********************
+                                 ; UDR0 - USART I/O Data Register
+                                 .equ	UDR0_0	= 0	; USART I/O Data Register bit 0
+                                 .equ	UDR0_1	= 1	; USART I/O Data Register bit 1
+                                 .equ	UDR0_2	= 2	; USART I/O Data Register bit 2
+                                 .equ	UDR0_3	= 3	; USART I/O Data Register bit 3
+                                 .equ	UDR0_4	= 4	; USART I/O Data Register bit 4
+                                 .equ	UDR0_5	= 5	; USART I/O Data Register bit 5
+                                 .equ	UDR0_6	= 6	; USART I/O Data Register bit 6
+                                 .equ	UDR0_7	= 7	; USART I/O Data Register bit 7
+                                 
+                                 ; UCSR0A - USART Control and Status Register A
+                                 .equ	MPCM0	= 0	; Multi-processor Communication Mode
+                                 .equ	U2X0	= 1	; Double the USART transmission speed
+                                 .equ	UPE0	= 2	; Parity Error
+                                 .equ	DOR0	= 3	; Data overRun
+                                 .equ	FE0	= 4	; Framing Error
+                                 .equ	UDRE0	= 5	; USART Data Register Empty
+                                 .equ	TXC0	= 6	; USART Transmitt Complete
+                                 .equ	RXC0	= 7	; USART Receive Complete
+                                 
+                                 ; UCSR0B - USART Control and Status Register B
+                                 .equ	TXB80	= 0	; Transmit Data Bit 8
+                                 .equ	RXB80	= 1	; Receive Data Bit 8
+                                 .equ	UCSZ02	= 2	; Character Size
+                                 .equ	TXEN0	= 3	; Transmitter Enable
+                                 .equ	RXEN0	= 4	; Receiver Enable
+                                 .equ	UDRIE0	= 5	; USART Data register Empty Interrupt Enable
+                                 .equ	TXCIE0	= 6	; TX Complete Interrupt Enable
+                                 .equ	RXCIE0	= 7	; RX Complete Interrupt Enable
+                                 
+                                 ; UCSR0C - USART Control and Status Register C
+                                 .equ	UCPOL0	= 0	; Clock Polarity
+                                 .equ	UCSZ00	= 1	; Character Size
+                                 .equ	UCPHA0	= UCSZ00	; For compatibility
+                                 .equ	UCSZ01	= 2	; Character Size
+                                 .equ	UDORD0	= UCSZ01	; For compatibility
+                                 .equ	USBS0	= 3	; Stop Bit Select
+                                 .equ	UPM00	= 4	; Parity Mode Bit 0
+                                 .equ	UPM01	= 5	; Parity Mode Bit 1
+                                 .equ	UMSEL00	= 6	; USART Mode Select
+                                 .equ	UMSEL0	= UMSEL00	; For compatibility
+                                 .equ	UMSEL01	= 7	; USART Mode Select
+                                 .equ	UMSEL1	= UMSEL01	; For compatibility
+                                 
+                                 ; UBRR0H - USART Baud Rate Register High Byte
+                                 .equ	UBRR8	= 0	; USART Baud Rate Register bit 8
+                                 .equ	UBRR9	= 1	; USART Baud Rate Register bit 9
+                                 .equ	UBRR10	= 2	; USART Baud Rate Register bit 10
+                                 .equ	UBRR11	= 3	; USART Baud Rate Register bit 11
+                                 
+                                 ; UBRR0L - USART Baud Rate Register Low Byte
+                                 .equ	_UBRR0	= 0	; USART Baud Rate Register bit 0
+                                 .equ	_UBRR1	= 1	; USART Baud Rate Register bit 1
+                                 .equ	UBRR2	= 2	; USART Baud Rate Register bit 2
+                                 .equ	UBRR3	= 3	; USART Baud Rate Register bit 3
+                                 .equ	UBRR4	= 4	; USART Baud Rate Register bit 4
+                                 .equ	UBRR5	= 5	; USART Baud Rate Register bit 5
+                                 .equ	UBRR6	= 6	; USART Baud Rate Register bit 6
+                                 .equ	UBRR7	= 7	; USART Baud Rate Register bit 7
+                                 
+                                 
+                                 ; ***** TWI **************************
+                                 ; TWAMR - TWI (Slave) Address Mask Register
+                                 .equ	TWAM0	= 1	; 
+                                 .equ	TWAMR0	= TWAM0	; For compatibility
+                                 .equ	TWAM1	= 2	; 
+                                 .equ	TWAMR1	= TWAM1	; For compatibility
+                                 .equ	TWAM2	= 3	; 
+                                 .equ	TWAMR2	= TWAM2	; For compatibility
+                                 .equ	TWAM3	= 4	; 
+                                 .equ	TWAMR3	= TWAM3	; For compatibility
+                                 .equ	TWAM4	= 5	; 
+                                 .equ	TWAMR4	= TWAM4	; For compatibility
+                                 .equ	TWAM5	= 6	; 
+                                 .equ	TWAMR5	= TWAM5	; For compatibility
+                                 .equ	TWAM6	= 7	; 
+                                 .equ	TWAMR6	= TWAM6	; For compatibility
+                                 
+                                 ; TWBR - TWI Bit Rate register
+                                 .equ	TWBR0	= 0	; 
+                                 .equ	TWBR1	= 1	; 
+                                 .equ	TWBR2	= 2	; 
+                                 .equ	TWBR3	= 3	; 
+                                 .equ	TWBR4	= 4	; 
+                                 .equ	TWBR5	= 5	; 
+                                 .equ	TWBR6	= 6	; 
+                                 .equ	TWBR7	= 7	; 
+                                 
+                                 ; TWCR - TWI Control Register
+                                 .equ	TWIE	= 0	; TWI Interrupt Enable
+                                 .equ	TWEN	= 2	; TWI Enable Bit
+                                 .equ	TWWC	= 3	; TWI Write Collition Flag
+                                 .equ	TWSTO	= 4	; TWI Stop Condition Bit
+                                 .equ	TWSTA	= 5	; TWI Start Condition Bit
+                                 .equ	TWEA	= 6	; TWI Enable Acknowledge Bit
+                                 .equ	TWINT	= 7	; TWI Interrupt Flag
+                                 
+                                 ; TWSR - TWI Status Register
+                                 .equ	TWPS0	= 0	; TWI Prescaler
+                                 .equ	TWPS1	= 1	; TWI Prescaler
+                                 .equ	TWS3	= 3	; TWI Status
+                                 .equ	TWS4	= 4	; TWI Status
+                                 .equ	TWS5	= 5	; TWI Status
+                                 .equ	TWS6	= 6	; TWI Status
+                                 .equ	TWS7	= 7	; TWI Status
+                                 
+                                 ; TWDR - TWI Data register
+                                 .equ	TWD0	= 0	; TWI Data Register Bit 0
+                                 .equ	TWD1	= 1	; TWI Data Register Bit 1
+                                 .equ	TWD2	= 2	; TWI Data Register Bit 2
+                                 .equ	TWD3	= 3	; TWI Data Register Bit 3
+                                 .equ	TWD4	= 4	; TWI Data Register Bit 4
+                                 .equ	TWD5	= 5	; TWI Data Register Bit 5
+                                 .equ	TWD6	= 6	; TWI Data Register Bit 6
+                                 .equ	TWD7	= 7	; TWI Data Register Bit 7
+                                 
+                                 ; TWAR - TWI (Slave) Address register
+                                 .equ	TWGCE	= 0	; TWI General Call Recognition Enable Bit
+                                 .equ	TWA0	= 1	; TWI (Slave) Address register Bit 0
+                                 .equ	TWA1	= 2	; TWI (Slave) Address register Bit 1
+                                 .equ	TWA2	= 3	; TWI (Slave) Address register Bit 2
+                                 .equ	TWA3	= 4	; TWI (Slave) Address register Bit 3
+                                 .equ	TWA4	= 5	; TWI (Slave) Address register Bit 4
+                                 .equ	TWA5	= 6	; TWI (Slave) Address register Bit 5
+                                 .equ	TWA6	= 7	; TWI (Slave) Address register Bit 6
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_1 **************
+                                 ; TIMSK1 - Timer/Counter Interrupt Mask Register
+                                 .equ	TOIE1	= 0	; Timer/Counter1 Overflow Interrupt Enable
+                                 .equ	OCIE1A	= 1	; Timer/Counter1 Output CompareA Match Interrupt Enable
+                                 .equ	OCIE1B	= 2	; Timer/Counter1 Output CompareB Match Interrupt Enable
+                                 .equ	ICIE1	= 5	; Timer/Counter1 Input Capture Interrupt Enable
+                                 
+                                 ; TIFR1 - Timer/Counter Interrupt Flag register
+                                 .equ	TOV1	= 0	; Timer/Counter1 Overflow Flag
+                                 .equ	OCF1A	= 1	; Output Compare Flag 1A
+                                 .equ	OCF1B	= 2	; Output Compare Flag 1B
+                                 .equ	ICF1	= 5	; Input Capture Flag 1
+                                 
+                                 ; TCCR1A - Timer/Counter1 Control Register A
+                                 .equ	WGM10	= 0	; Waveform Generation Mode
+                                 .equ	WGM11	= 1	; Waveform Generation Mode
+                                 .equ	COM1B0	= 4	; Compare Output Mode 1B, bit 0
+                                 .equ	COM1B1	= 5	; Compare Output Mode 1B, bit 1
+                                 .equ	COM1A0	= 6	; Comparet Ouput Mode 1A, bit 0
+                                 .equ	COM1A1	= 7	; Compare Output Mode 1A, bit 1
+                                 
+                                 ; TCCR1B - Timer/Counter1 Control Register B
+                                 .equ	CS10	= 0	; Prescaler source of Timer/Counter 1
+                                 .equ	CS11	= 1	; Prescaler source of Timer/Counter 1
+                                 .equ	CS12	= 2	; Prescaler source of Timer/Counter 1
+                                 .equ	WGM12	= 3	; Waveform Generation Mode
+                                 .equ	WGM13	= 4	; Waveform Generation Mode
+                                 .equ	ICES1	= 6	; Input Capture 1 Edge Select
+                                 .equ	ICNC1	= 7	; Input Capture 1 Noise Canceler
+                                 
+                                 ; TCCR1C - Timer/Counter1 Control Register C
+                                 .equ	FOC1B	= 6	; 
+                                 .equ	FOC1A	= 7	; 
+                                 
+                                 ; GTCCR - General Timer/Counter Control Register
+                                 .equ	PSRSYNC	= 0	; Prescaler Reset Timer/Counter1 and Timer/Counter0
+                                 .equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_2 **************
+                                 ; TIMSK2 - Timer/Counter Interrupt Mask register
+                                 .equ	TOIE2	= 0	; Timer/Counter2 Overflow Interrupt Enable
+                                 .equ	TOIE2A	= TOIE2	; For compatibility
+                                 .equ	OCIE2A	= 1	; Timer/Counter2 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE2B	= 2	; Timer/Counter2 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR2 - Timer/Counter Interrupt Flag Register
+                                 .equ	TOV2	= 0	; Timer/Counter2 Overflow Flag
+                                 .equ	OCF2A	= 1	; Output Compare Flag 2A
+                                 .equ	OCF2B	= 2	; Output Compare Flag 2B
+                                 
+                                 ; TCCR2A - Timer/Counter2 Control Register A
+                                 .equ	WGM20	= 0	; Waveform Genration Mode
+                                 .equ	WGM21	= 1	; Waveform Genration Mode
+                                 .equ	COM2B0	= 4	; Compare Output Mode bit 0
+                                 .equ	COM2B1	= 5	; Compare Output Mode bit 1
+                                 .equ	COM2A0	= 6	; Compare Output Mode bit 1
+                                 .equ	COM2A1	= 7	; Compare Output Mode bit 1
+                                 
+                                 ; TCCR2B - Timer/Counter2 Control Register B
+                                 .equ	CS20	= 0	; Clock Select bit 0
+                                 .equ	CS21	= 1	; Clock Select bit 1
+                                 .equ	CS22	= 2	; Clock Select bit 2
+                                 .equ	WGM22	= 3	; Waveform Generation Mode
+                                 .equ	FOC2B	= 6	; Force Output Compare B
+                                 .equ	FOC2A	= 7	; Force Output Compare A
+                                 
+                                 ; TCNT2 - Timer/Counter2
+                                 .equ	TCNT2_0	= 0	; Timer/Counter 2 bit 0
+                                 .equ	TCNT2_1	= 1	; Timer/Counter 2 bit 1
+                                 .equ	TCNT2_2	= 2	; Timer/Counter 2 bit 2
+                                 .equ	TCNT2_3	= 3	; Timer/Counter 2 bit 3
+                                 .equ	TCNT2_4	= 4	; Timer/Counter 2 bit 4
+                                 .equ	TCNT2_5	= 5	; Timer/Counter 2 bit 5
+                                 .equ	TCNT2_6	= 6	; Timer/Counter 2 bit 6
+                                 .equ	TCNT2_7	= 7	; Timer/Counter 2 bit 7
+                                 
+                                 ; OCR2A - Timer/Counter2 Output Compare Register A
+                                 .equ	OCR2A_0	= 0	; Timer/Counter2 Output Compare Register Bit 0
+                                 .equ	OCR2A_1	= 1	; Timer/Counter2 Output Compare Register Bit 1
+                                 .equ	OCR2A_2	= 2	; Timer/Counter2 Output Compare Register Bit 2
+                                 .equ	OCR2A_3	= 3	; Timer/Counter2 Output Compare Register Bit 3
+                                 .equ	OCR2A_4	= 4	; Timer/Counter2 Output Compare Register Bit 4
+                                 .equ	OCR2A_5	= 5	; Timer/Counter2 Output Compare Register Bit 5
+                                 .equ	OCR2A_6	= 6	; Timer/Counter2 Output Compare Register Bit 6
+                                 .equ	OCR2A_7	= 7	; Timer/Counter2 Output Compare Register Bit 7
+                                 
+                                 ; OCR2B - Timer/Counter2 Output Compare Register B
+                                 .equ	OCR2B_0	= 0	; Timer/Counter2 Output Compare Register Bit 0
+                                 .equ	OCR2B_1	= 1	; Timer/Counter2 Output Compare Register Bit 1
+                                 .equ	OCR2B_2	= 2	; Timer/Counter2 Output Compare Register Bit 2
+                                 .equ	OCR2B_3	= 3	; Timer/Counter2 Output Compare Register Bit 3
+                                 .equ	OCR2B_4	= 4	; Timer/Counter2 Output Compare Register Bit 4
+                                 .equ	OCR2B_5	= 5	; Timer/Counter2 Output Compare Register Bit 5
+                                 .equ	OCR2B_6	= 6	; Timer/Counter2 Output Compare Register Bit 6
+                                 .equ	OCR2B_7	= 7	; Timer/Counter2 Output Compare Register Bit 7
+                                 
+                                 ; ASSR - Asynchronous Status Register
+                                 .equ	TCR2BUB	= 0	; Timer/Counter Control Register2 Update Busy
+                                 .equ	TCR2AUB	= 1	; Timer/Counter Control Register2 Update Busy
+                                 .equ	OCR2BUB	= 2	; Output Compare Register 2 Update Busy
+                                 .equ	OCR2AUB	= 3	; Output Compare Register2 Update Busy
+                                 .equ	TCN2UB	= 4	; Timer/Counter2 Update Busy
+                                 .equ	AS2	= 5	; Asynchronous Timer/Counter2
+                                 .equ	EXCLK	= 6	; Enable External Clock Input
+                                 
+                                 ; GTCCR - General Timer Counter Control register
+                                 .equ	PSRASY	= 1	; Prescaler Reset Timer/Counter2
+                                 .equ	PSR2	= PSRASY	; For compatibility
+                                 ;.equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** AD_CONVERTER *****************
+                                 ; ADMUX - The ADC multiplexer Selection Register
+                                 .equ	MUX0	= 0	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX1	= 1	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX2	= 2	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX3	= 3	; Analog Channel and Gain Selection Bits
+                                 .equ	ADLAR	= 5	; Left Adjust Result
+                                 .equ	REFS0	= 6	; Reference Selection Bit 0
+                                 .equ	REFS1	= 7	; Reference Selection Bit 1
+                                 
+                                 ; ADCSRA - The ADC Control and Status register A
+                                 .equ	ADPS0	= 0	; ADC  Prescaler Select Bits
+                                 .equ	ADPS1	= 1	; ADC  Prescaler Select Bits
+                                 .equ	ADPS2	= 2	; ADC  Prescaler Select Bits
+                                 .equ	ADIE	= 3	; ADC Interrupt Enable
+                                 .equ	ADIF	= 4	; ADC Interrupt Flag
+                                 .equ	ADATE	= 5	; ADC  Auto Trigger Enable
+                                 .equ	ADSC	= 6	; ADC Start Conversion
+                                 .equ	ADEN	= 7	; ADC Enable
+                                 
+                                 ; ADCSRB - The ADC Control and Status register B
+                                 .equ	ADTS0	= 0	; ADC Auto Trigger Source bit 0
+                                 .equ	ADTS1	= 1	; ADC Auto Trigger Source bit 1
+                                 .equ	ADTS2	= 2	; ADC Auto Trigger Source bit 2
+                                 .equ	ACME	= 6	; 
+                                 
+                                 ; ADCH - ADC Data Register High Byte
+                                 .equ	ADCH0	= 0	; ADC Data Register High Byte Bit 0
+                                 .equ	ADCH1	= 1	; ADC Data Register High Byte Bit 1
+                                 .equ	ADCH2	= 2	; ADC Data Register High Byte Bit 2
+                                 .equ	ADCH3	= 3	; ADC Data Register High Byte Bit 3
+                                 .equ	ADCH4	= 4	; ADC Data Register High Byte Bit 4
+                                 .equ	ADCH5	= 5	; ADC Data Register High Byte Bit 5
+                                 .equ	ADCH6	= 6	; ADC Data Register High Byte Bit 6
+                                 .equ	ADCH7	= 7	; ADC Data Register High Byte Bit 7
+                                 
+                                 ; ADCL - ADC Data Register Low Byte
+                                 .equ	ADCL0	= 0	; ADC Data Register Low Byte Bit 0
+                                 .equ	ADCL1	= 1	; ADC Data Register Low Byte Bit 1
+                                 .equ	ADCL2	= 2	; ADC Data Register Low Byte Bit 2
+                                 .equ	ADCL3	= 3	; ADC Data Register Low Byte Bit 3
+                                 .equ	ADCL4	= 4	; ADC Data Register Low Byte Bit 4
+                                 .equ	ADCL5	= 5	; ADC Data Register Low Byte Bit 5
+                                 .equ	ADCL6	= 6	; ADC Data Register Low Byte Bit 6
+                                 .equ	ADCL7	= 7	; ADC Data Register Low Byte Bit 7
+                                 
+                                 ; DIDR0 - Digital Input Disable Register
+                                 .equ	ADC0D	= 0	; 
+                                 .equ	ADC1D	= 1	; 
+                                 .equ	ADC2D	= 2	; 
+                                 .equ	ADC3D	= 3	; 
+                                 .equ	ADC4D	= 4	; 
+                                 .equ	ADC5D	= 5	; 
+                                 
+                                 
+                                 ; ***** ANALOG_COMPARATOR ************
+                                 ; ACSR - Analog Comparator Control And Status Register
+                                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                                 .equ	ACIC	= 2	; Analog Comparator Input Capture Enable
+                                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                                 .equ	ACO	= 5	; Analog Compare Output
+                                 .equ	ACBG	= 6	; Analog Comparator Bandgap Select
+                                 .equ	ACD	= 7	; Analog Comparator Disable
+                                 
+                                 ; DIDR1 - Digital Input Disable Register 1
+                                 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
+                                 .equ	AIN1D	= 1	; AIN1 Digital Input Disable
+                                 
+                                 
+                                 ; ***** PORTB ************************
+                                 ; PORTB - Port B Data Register
+                                 .equ	PORTB0	= 0	; Port B Data Register bit 0
+                                 .equ	PB0	= 0	; For compatibility
+                                 .equ	PORTB1	= 1	; Port B Data Register bit 1
+                                 .equ	PB1	= 1	; For compatibility
+                                 .equ	PORTB2	= 2	; Port B Data Register bit 2
+                                 .equ	PB2	= 2	; For compatibility
+                                 .equ	PORTB3	= 3	; Port B Data Register bit 3
+                                 .equ	PB3	= 3	; For compatibility
+                                 .equ	PORTB4	= 4	; Port B Data Register bit 4
+                                 .equ	PB4	= 4	; For compatibility
+                                 .equ	PORTB5	= 5	; Port B Data Register bit 5
+                                 .equ	PB5	= 5	; For compatibility
+                                 .equ	PORTB6	= 6	; Port B Data Register bit 6
+                                 .equ	PB6	= 6	; For compatibility
+                                 .equ	PORTB7	= 7	; Port B Data Register bit 7
+                                 .equ	PB7	= 7	; For compatibility
+                                 
+                                 ; DDRB - Port B Data Direction Register
+                                 .equ	DDB0	= 0	; Port B Data Direction Register bit 0
+                                 .equ	DDB1	= 1	; Port B Data Direction Register bit 1
+                                 .equ	DDB2	= 2	; Port B Data Direction Register bit 2
+                                 .equ	DDB3	= 3	; Port B Data Direction Register bit 3
+                                 .equ	DDB4	= 4	; Port B Data Direction Register bit 4
+                                 .equ	DDB5	= 5	; Port B Data Direction Register bit 5
+                                 .equ	DDB6	= 6	; Port B Data Direction Register bit 6
+                                 .equ	DDB7	= 7	; Port B Data Direction Register bit 7
+                                 
+                                 ; PINB - Port B Input Pins
+                                 .equ	PINB0	= 0	; Port B Input Pins bit 0
+                                 .equ	PINB1	= 1	; Port B Input Pins bit 1
+                                 .equ	PINB2	= 2	; Port B Input Pins bit 2
+                                 .equ	PINB3	= 3	; Port B Input Pins bit 3
+                                 .equ	PINB4	= 4	; Port B Input Pins bit 4
+                                 .equ	PINB5	= 5	; Port B Input Pins bit 5
+                                 .equ	PINB6	= 6	; Port B Input Pins bit 6
+                                 .equ	PINB7	= 7	; Port B Input Pins bit 7
+                                 
+                                 
+                                 ; ***** PORTC ************************
+                                 ; PORTC - Port C Data Register
+                                 .equ	PORTC0	= 0	; Port C Data Register bit 0
+                                 .equ	PC0	= 0	; For compatibility
+                                 .equ	PORTC1	= 1	; Port C Data Register bit 1
+                                 .equ	PC1	= 1	; For compatibility
+                                 .equ	PORTC2	= 2	; Port C Data Register bit 2
+                                 .equ	PC2	= 2	; For compatibility
+                                 .equ	PORTC3	= 3	; Port C Data Register bit 3
+                                 .equ	PC3	= 3	; For compatibility
+                                 .equ	PORTC4	= 4	; Port C Data Register bit 4
+                                 .equ	PC4	= 4	; For compatibility
+                                 .equ	PORTC5	= 5	; Port C Data Register bit 5
+                                 .equ	PC5	= 5	; For compatibility
+                                 .equ	PORTC6	= 6	; Port C Data Register bit 6
+                                 .equ	PC6	= 6	; For compatibility
+                                 
+                                 ; DDRC - Port C Data Direction Register
+                                 .equ	DDC0	= 0	; Port C Data Direction Register bit 0
+                                 .equ	DDC1	= 1	; Port C Data Direction Register bit 1
+                                 .equ	DDC2	= 2	; Port C Data Direction Register bit 2
+                                 .equ	DDC3	= 3	; Port C Data Direction Register bit 3
+                                 .equ	DDC4	= 4	; Port C Data Direction Register bit 4
+                                 .equ	DDC5	= 5	; Port C Data Direction Register bit 5
+                                 .equ	DDC6	= 6	; Port C Data Direction Register bit 6
+                                 
+                                 ; PINC - Port C Input Pins
+                                 .equ	PINC0	= 0	; Port C Input Pins bit 0
+                                 .equ	PINC1	= 1	; Port C Input Pins bit 1
+                                 .equ	PINC2	= 2	; Port C Input Pins bit 2
+                                 .equ	PINC3	= 3	; Port C Input Pins bit 3
+                                 .equ	PINC4	= 4	; Port C Input Pins bit 4
+                                 .equ	PINC5	= 5	; Port C Input Pins bit 5
+                                 .equ	PINC6	= 6	; Port C Input Pins bit 6
+                                 
+                                 
+                                 ; ***** PORTD ************************
+                                 ; PORTD - Port D Data Register
+                                 .equ	PORTD0	= 0	; Port D Data Register bit 0
+                                 .equ	PD0	= 0	; For compatibility
+                                 .equ	PORTD1	= 1	; Port D Data Register bit 1
+                                 .equ	PD1	= 1	; For compatibility
+                                 .equ	PORTD2	= 2	; Port D Data Register bit 2
+                                 .equ	PD2	= 2	; For compatibility
+                                 .equ	PORTD3	= 3	; Port D Data Register bit 3
+                                 .equ	PD3	= 3	; For compatibility
+                                 .equ	PORTD4	= 4	; Port D Data Register bit 4
+                                 .equ	PD4	= 4	; For compatibility
+                                 .equ	PORTD5	= 5	; Port D Data Register bit 5
+                                 .equ	PD5	= 5	; For compatibility
+                                 .equ	PORTD6	= 6	; Port D Data Register bit 6
+                                 .equ	PD6	= 6	; For compatibility
+                                 .equ	PORTD7	= 7	; Port D Data Register bit 7
+                                 .equ	PD7	= 7	; For compatibility
+                                 
+                                 ; DDRD - Port D Data Direction Register
+                                 .equ	DDD0	= 0	; Port D Data Direction Register bit 0
+                                 .equ	DDD1	= 1	; Port D Data Direction Register bit 1
+                                 .equ	DDD2	= 2	; Port D Data Direction Register bit 2
+                                 .equ	DDD3	= 3	; Port D Data Direction Register bit 3
+                                 .equ	DDD4	= 4	; Port D Data Direction Register bit 4
+                                 .equ	DDD5	= 5	; Port D Data Direction Register bit 5
+                                 .equ	DDD6	= 6	; Port D Data Direction Register bit 6
+                                 .equ	DDD7	= 7	; Port D Data Direction Register bit 7
+                                 
+                                 ; PIND - Port D Input Pins
+                                 .equ	PIND0	= 0	; Port D Input Pins bit 0
+                                 .equ	PIND1	= 1	; Port D Input Pins bit 1
+                                 .equ	PIND2	= 2	; Port D Input Pins bit 2
+                                 .equ	PIND3	= 3	; Port D Input Pins bit 3
+                                 .equ	PIND4	= 4	; Port D Input Pins bit 4
+                                 .equ	PIND5	= 5	; Port D Input Pins bit 5
+                                 .equ	PIND6	= 6	; Port D Input Pins bit 6
+                                 .equ	PIND7	= 7	; Port D Input Pins bit 7
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_0 **************
+                                 ; TIMSK0 - Timer/Counter0 Interrupt Mask Register
+                                 .equ	TOIE0	= 0	; Timer/Counter0 Overflow Interrupt Enable
+                                 .equ	OCIE0A	= 1	; Timer/Counter0 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE0B	= 2	; Timer/Counter0 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR0 - Timer/Counter0 Interrupt Flag register
+                                 .equ	TOV0	= 0	; Timer/Counter0 Overflow Flag
+                                 .equ	OCF0A	= 1	; Timer/Counter0 Output Compare Flag 0A
+                                 .equ	OCF0B	= 2	; Timer/Counter0 Output Compare Flag 0B
+                                 
+                                 ; TCCR0A - Timer/Counter  Control Register A
+                                 .equ	WGM00	= 0	; Waveform Generation Mode
+                                 .equ	WGM01	= 1	; Waveform Generation Mode
+                                 .equ	COM0B0	= 4	; Compare Output Mode, Fast PWm
+                                 .equ	COM0B1	= 5	; Compare Output Mode, Fast PWm
+                                 .equ	COM0A0	= 6	; Compare Output Mode, Phase Correct PWM Mode
+                                 .equ	COM0A1	= 7	; Compare Output Mode, Phase Correct PWM Mode
+                                 
+                                 ; TCCR0B - Timer/Counter Control Register B
+                                 .equ	CS00	= 0	; Clock Select
+                                 .equ	CS01	= 1	; Clock Select
+                                 .equ	CS02	= 2	; Clock Select
+                                 .equ	WGM02	= 3	; 
+                                 .equ	FOC0B	= 6	; Force Output Compare B
+                                 .equ	FOC0A	= 7	; Force Output Compare A
+                                 
+                                 ; TCNT0 - Timer/Counter0
+                                 .equ	TCNT0_0	= 0	; 
+                                 .equ	TCNT0_1	= 1	; 
+                                 .equ	TCNT0_2	= 2	; 
+                                 .equ	TCNT0_3	= 3	; 
+                                 .equ	TCNT0_4	= 4	; 
+                                 .equ	TCNT0_5	= 5	; 
+                                 .equ	TCNT0_6	= 6	; 
+                                 .equ	TCNT0_7	= 7	; 
+                                 
+                                 ; OCR0A - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0A_0	= 0	; 
+                                 .equ	OCR0A_1	= 1	; 
+                                 .equ	OCR0A_2	= 2	; 
+                                 .equ	OCR0A_3	= 3	; 
+                                 .equ	OCR0A_4	= 4	; 
+                                 .equ	OCR0A_5	= 5	; 
+                                 .equ	OCR0A_6	= 6	; 
+                                 .equ	OCR0A_7	= 7	; 
+                                 
+                                 ; OCR0B - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0B_0	= 0	; 
+                                 .equ	OCR0B_1	= 1	; 
+                                 .equ	OCR0B_2	= 2	; 
+                                 .equ	OCR0B_3	= 3	; 
+                                 .equ	OCR0B_4	= 4	; 
+                                 .equ	OCR0B_5	= 5	; 
+                                 .equ	OCR0B_6	= 6	; 
+                                 .equ	OCR0B_7	= 7	; 
+                                 
+                                 ; GTCCR - General Timer/Counter Control Register
+                                 ;.equ	PSRSYNC	= 0	; Prescaler Reset Timer/Counter1 and Timer/Counter0
+                                 .equ	PSR10	= PSRSYNC	; For compatibility
+                                 ;.equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** EXTERNAL_INTERRUPT ***********
+                                 ; EICRA - External Interrupt Control Register
+                                 .equ	ISC00	= 0	; External Interrupt Sense Control 0 Bit 0
+                                 .equ	ISC01	= 1	; External Interrupt Sense Control 0 Bit 1
+                                 .equ	ISC10	= 2	; External Interrupt Sense Control 1 Bit 0
+                                 .equ	ISC11	= 3	; External Interrupt Sense Control 1 Bit 1
+                                 
+                                 ; EIMSK - External Interrupt Mask Register
+                                 .equ	INT0	= 0	; External Interrupt Request 0 Enable
+                                 .equ	INT1	= 1	; External Interrupt Request 1 Enable
+                                 
+                                 ; EIFR - External Interrupt Flag Register
+                                 .equ	INTF0	= 0	; External Interrupt Flag 0
+                                 .equ	INTF1	= 1	; External Interrupt Flag 1
+                                 
+                                 ; PCICR - Pin Change Interrupt Control Register
+                                 .equ	PCIE0	= 0	; Pin Change Interrupt Enable 0
+                                 .equ	PCIE1	= 1	; Pin Change Interrupt Enable 1
+                                 .equ	PCIE2	= 2	; Pin Change Interrupt Enable 2
+                                 
+                                 ; PCMSK2 - Pin Change Mask Register 2
+                                 .equ	PCINT16	= 0	; Pin Change Enable Mask 16
+                                 .equ	PCINT17	= 1	; Pin Change Enable Mask 17
+                                 .equ	PCINT18	= 2	; Pin Change Enable Mask 18
+                                 .equ	PCINT19	= 3	; Pin Change Enable Mask 19
+                                 .equ	PCINT20	= 4	; Pin Change Enable Mask 20
+                                 .equ	PCINT21	= 5	; Pin Change Enable Mask 21
+                                 .equ	PCINT22	= 6	; Pin Change Enable Mask 22
+                                 .equ	PCINT23	= 7	; Pin Change Enable Mask 23
+                                 
+                                 ; PCMSK1 - Pin Change Mask Register 1
+                                 .equ	PCINT8	= 0	; Pin Change Enable Mask 8
+                                 .equ	PCINT9	= 1	; Pin Change Enable Mask 9
+                                 .equ	PCINT10	= 2	; Pin Change Enable Mask 10
+                                 .equ	PCINT11	= 3	; Pin Change Enable Mask 11
+                                 .equ	PCINT12	= 4	; Pin Change Enable Mask 12
+                                 .equ	PCINT13	= 5	; Pin Change Enable Mask 13
+                                 .equ	PCINT14	= 6	; Pin Change Enable Mask 14
+                                 
+                                 ; PCMSK0 - Pin Change Mask Register 0
+                                 .equ	PCINT0	= 0	; Pin Change Enable Mask 0
+                                 .equ	PCINT1	= 1	; Pin Change Enable Mask 1
+                                 .equ	PCINT2	= 2	; Pin Change Enable Mask 2
+                                 .equ	PCINT3	= 3	; Pin Change Enable Mask 3
+                                 .equ	PCINT4	= 4	; Pin Change Enable Mask 4
+                                 .equ	PCINT5	= 5	; Pin Change Enable Mask 5
+                                 .equ	PCINT6	= 6	; Pin Change Enable Mask 6
+                                 .equ	PCINT7	= 7	; Pin Change Enable Mask 7
+                                 
+                                 ; PCIFR - Pin Change Interrupt Flag Register
+                                 .equ	PCIF0	= 0	; Pin Change Interrupt Flag 0
+                                 .equ	PCIF1	= 1	; Pin Change Interrupt Flag 1
+                                 .equ	PCIF2	= 2	; Pin Change Interrupt Flag 2
+                                 
+                                 
+                                 ; ***** SPI **************************
+                                 ; SPDR - SPI Data Register
+                                 .equ	SPDR0	= 0	; SPI Data Register bit 0
+                                 .equ	SPDR1	= 1	; SPI Data Register bit 1
+                                 .equ	SPDR2	= 2	; SPI Data Register bit 2
+                                 .equ	SPDR3	= 3	; SPI Data Register bit 3
+                                 .equ	SPDR4	= 4	; SPI Data Register bit 4
+                                 .equ	SPDR5	= 5	; SPI Data Register bit 5
+                                 .equ	SPDR6	= 6	; SPI Data Register bit 6
+                                 .equ	SPDR7	= 7	; SPI Data Register bit 7
+                                 
+                                 ; SPSR - SPI Status Register
+                                 .equ	SPI2X	= 0	; Double SPI Speed Bit
+                                 .equ	WCOL	= 6	; Write Collision Flag
+                                 .equ	SPIF	= 7	; SPI Interrupt Flag
+                                 
+                                 ; SPCR - SPI Control Register
+                                 .equ	SPR0	= 0	; SPI Clock Rate Select 0
+                                 .equ	SPR1	= 1	; SPI Clock Rate Select 1
+                                 .equ	CPHA	= 2	; Clock Phase
+                                 .equ	CPOL	= 3	; Clock polarity
+                                 .equ	MSTR	= 4	; Master/Slave Select
+                                 .equ	DORD	= 5	; Data Order
+                                 .equ	SPE	= 6	; SPI Enable
+                                 .equ	SPIE	= 7	; SPI Interrupt Enable
+                                 
+                                 
+                                 ; ***** WATCHDOG *********************
+                                 ; WDTCSR - Watchdog Timer Control Register
+                                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                                 .equ	WDE	= 3	; Watch Dog Enable
+                                 .equ	WDCE	= 4	; Watchdog Change Enable
+                                 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
+                                 .equ	WDIE	= 6	; Watchdog Timeout Interrupt Enable
+                                 .equ	WDIF	= 7	; Watchdog Timeout Interrupt Flag
+                                 
+                                 
+                                 ; ***** CPU **************************
+                                 ; SREG - Status Register
+                                 .equ	SREG_C	= 0	; Carry Flag
+                                 .equ	SREG_Z	= 1	; Zero Flag
+                                 .equ	SREG_N	= 2	; Negative Flag
+                                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                                 .equ	SREG_S	= 4	; Sign Bit
+                                 .equ	SREG_H	= 5	; Half Carry Flag
+                                 .equ	SREG_T	= 6	; Bit Copy Storage
+                                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                                 
+                                 ; OSCCAL - Oscillator Calibration Value
+                                 .equ	CAL0	= 0	; Oscillator Calibration Value Bit0
+                                 .equ	CAL1	= 1	; Oscillator Calibration Value Bit1
+                                 .equ	CAL2	= 2	; Oscillator Calibration Value Bit2
+                                 .equ	CAL3	= 3	; Oscillator Calibration Value Bit3
+                                 .equ	CAL4	= 4	; Oscillator Calibration Value Bit4
+                                 .equ	CAL5	= 5	; Oscillator Calibration Value Bit5
+                                 .equ	CAL6	= 6	; Oscillator Calibration Value Bit6
+                                 .equ	CAL7	= 7	; Oscillator Calibration Value Bit7
+                                 
+                                 ; CLKPR - Clock Prescale Register
+                                 .equ	CLKPS0	= 0	; Clock Prescaler Select Bit 0
+                                 .equ	CLKPS1	= 1	; Clock Prescaler Select Bit 1
+                                 .equ	CLKPS2	= 2	; Clock Prescaler Select Bit 2
+                                 .equ	CLKPS3	= 3	; Clock Prescaler Select Bit 3
+                                 .equ	CLKPCE	= 7	; Clock Prescaler Change Enable
+                                 
+                                 ; SPMCSR - Store Program Memory Control and Status Register
+                                 .equ    SELFPRGEN = 0; Added for backwards compatibility
+                                 .equ	SPMEN	= 0	; Store Program Memory
+                                 .equ	PGERS	= 1	; Page Erase
+                                 .equ	PGWRT	= 2	; Page Write
+                                 .equ	BLBSET	= 3	; Boot Lock Bit Set
+                                 .equ	RWWSRE	= 4	; Read-While-Write section read enable
+                                 .equ    SIGRD   = 5 ; Signature Row Read
+                                 .equ	RWWSB	= 6	; Read-While-Write Section Busy
+                                 .equ	SPMIE	= 7	; SPM Interrupt Enable
+                                 
+                                 ; MCUCR - MCU Control Register
+                                 .equ	IVCE	= 0	; 
+                                 .equ	IVSEL	= 1	; 
+                                 .equ	PUD	= 4	; 
+                                 .equ	BODSE	= 5	; BOD Sleep Enable
+                                 .equ	BODS	= 6	; BOD Sleep
+                                 
+                                 ; MCUSR - MCU Status Register
+                                 .equ	PORF	= 0	; Power-on reset flag
+                                 .equ	EXTRF	= 1	; External Reset Flag
+                                 .equ	EXTREF	= EXTRF	; For compatibility
+                                 .equ	BORF	= 2	; Brown-out Reset Flag
+                                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                                 
+                                 ; SMCR - Sleep Mode Control Register
+                                 .equ	SE	= 0	; Sleep Enable
+                                 .equ	SM0	= 1	; Sleep Mode Select Bit 0
+                                 .equ	SM1	= 2	; Sleep Mode Select Bit 1
+                                 .equ	SM2	= 3	; Sleep Mode Select Bit 2
+                                 
+                                 ; GPIOR2 - General Purpose I/O Register 2
+                                 .equ	GPIOR20	= 0	; 
+                                 .equ	GPIOR21	= 1	; 
+                                 .equ	GPIOR22	= 2	; 
+                                 .equ	GPIOR23	= 3	; 
+                                 .equ	GPIOR24	= 4	; 
+                                 .equ	GPIOR25	= 5	; 
+                                 .equ	GPIOR26	= 6	; 
+                                 .equ	GPIOR27	= 7	; 
+                                 
+                                 ; GPIOR1 - General Purpose I/O Register 1
+                                 .equ	GPIOR10	= 0	; 
+                                 .equ	GPIOR11	= 1	; 
+                                 .equ	GPIOR12	= 2	; 
+                                 .equ	GPIOR13	= 3	; 
+                                 .equ	GPIOR14	= 4	; 
+                                 .equ	GPIOR15	= 5	; 
+                                 .equ	GPIOR16	= 6	; 
+                                 .equ	GPIOR17	= 7	; 
+                                 
+                                 ; GPIOR0 - General Purpose I/O Register 0
+                                 .equ	GPIOR00	= 0	; 
+                                 .equ	GPIOR01	= 1	; 
+                                 .equ	GPIOR02	= 2	; 
+                                 .equ	GPIOR03	= 3	; 
+                                 .equ	GPIOR04	= 4	; 
+                                 .equ	GPIOR05	= 5	; 
+                                 .equ	GPIOR06	= 6	; 
+                                 .equ	GPIOR07	= 7	; 
+                                 
+                                 ; PRR - Power Reduction Register
+                                 .equ	PRADC	= 0	; Power Reduction ADC
+                                 .equ	PRUSART0	= 1	; Power Reduction USART
+                                 .equ	PRSPI	= 2	; Power Reduction Serial Peripheral Interface
+                                 .equ	PRTIM1	= 3	; Power Reduction Timer/Counter1
+                                 .equ	PRTIM0	= 5	; Power Reduction Timer/Counter0
+                                 .equ	PRTIM2	= 6	; Power Reduction Timer/Counter2
+                                 .equ	PRTWI	= 7	; Power Reduction TWI
+                                 
+                                 
+                                 ; ***** EEPROM ***********************
+                                 ; EEARL - EEPROM Address Register Low Byte
+                                 .equ	EEAR0	= 0	; EEPROM Read/Write Access Bit 0
+                                 .equ	EEAR1	= 1	; EEPROM Read/Write Access Bit 1
+                                 .equ	EEAR2	= 2	; EEPROM Read/Write Access Bit 2
+                                 .equ	EEAR3	= 3	; EEPROM Read/Write Access Bit 3
+                                 .equ	EEAR4	= 4	; EEPROM Read/Write Access Bit 4
+                                 .equ	EEAR5	= 5	; EEPROM Read/Write Access Bit 5
+                                 .equ	EEAR6	= 6	; EEPROM Read/Write Access Bit 6
+                                 .equ	EEAR7	= 7	; EEPROM Read/Write Access Bit 7
+                                 
+                                 ; EEARH - EEPROM Address Register High Byte
+                                 .equ	EEAR8	= 0	; EEPROM Read/Write Access Bit 8
+                                 .equ	EEAR9	= 1	; EEPROM Read/Write Access Bit 9
+                                 
+                                 ; EEDR - EEPROM Data Register
+                                 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
+                                 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
+                                 .equ	EEDR2	= 2	; EEPROM Data Register bit 2
+                                 .equ	EEDR3	= 3	; EEPROM Data Register bit 3
+                                 .equ	EEDR4	= 4	; EEPROM Data Register bit 4
+                                 .equ	EEDR5	= 5	; EEPROM Data Register bit 5
+                                 .equ	EEDR6	= 6	; EEPROM Data Register bit 6
+                                 .equ	EEDR7	= 7	; EEPROM Data Register bit 7
+                                 
+                                 ; EECR - EEPROM Control Register
+                                 .equ	EERE	= 0	; EEPROM Read Enable
+                                 .equ	EEPE	= 1	; EEPROM Write Enable
+                                 .equ	EEMPE	= 2	; EEPROM Master Write Enable
+                                 .equ	EERIE	= 3	; EEPROM Ready Interrupt Enable
+                                 .equ	EEPM0	= 4	; EEPROM Programming Mode Bit 0
+                                 .equ	EEPM1	= 5	; EEPROM Programming Mode Bit 1
+                                 
+                                 
+                                 
+                                 ; ***** LOCKSBITS ********************************************************
+                                 .equ	LB1	= 0	; Lock bit
+                                 .equ	LB2	= 1	; Lock bit
+                                 .equ	BLB01	= 2	; Boot Lock bit
+                                 .equ	BLB02	= 3	; Boot Lock bit
+                                 .equ	BLB11	= 4	; Boot lock bit
+                                 .equ	BLB12	= 5	; Boot lock bit
+                                 
+                                 
+                                 ; ***** FUSES ************************************************************
+                                 ; LOW fuse bits
+                                 .equ	CKSEL0	= 0	; Select Clock Source
+                                 .equ	CKSEL1	= 1	; Select Clock Source
+                                 .equ	CKSEL2	= 2	; Select Clock Source
+                                 .equ	CKSEL3	= 3	; Select Clock Source
+                                 .equ	SUT0	= 4	; Select start-up time
+                                 .equ	SUT1	= 5	; Select start-up time
+                                 .equ	CKOUT	= 6	; Clock output
+                                 .equ	CKDIV8	= 7	; Divide clock by 8
+                                 
+                                 ; HIGH fuse bits
+                                 .equ	BOOTRST	= 0	; Select reset vector
+                                 .equ	BOOTSZ0	= 1	; Select boot size
+                                 .equ	BOOTSZ1	= 2	; Select boot size
+                                 .equ	EESAVE	= 3	; EEPROM memory is preserved through chip erase
+                                 .equ	WDTON	= 4	; Watchdog Timer Always On
+                                 .equ	SPIEN	= 5	; Enable Serial programming and Data Downloading
+                                 .equ	DWEN	= 6	; debugWIRE Enable
+                                 .equ	RSTDISBL	= 7	; External reset disable
+                                 
+                                 ; EXTENDED fuse bits
+                                 .equ	BODLEVEL0	= 0	; Brown-out Detector trigger level
+                                 .equ	BODLEVEL1	= 1	; Brown-out Detector trigger level
+                                 .equ	BODLEVEL2	= 2	; Brown-out Detector trigger level
+                                 
+                                 
+                                 
+                                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                                 .def	XH	= r27
+                                 .def	XL	= r26
+                                 .def	YH	= r29
+                                 .def	YL	= r28
+                                 .def	ZH	= r31
+                                 .def	ZL	= r30
+                                 
+                                 
+                                 
+                                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                                 .equ	FLASHEND	= 0x3fff	; Note: Word address
+                                 .equ	IOEND	= 0x00ff
+                                 .equ	SRAM_START	= 0x0100
+                                 .equ	SRAM_SIZE	= 2048
+                                 .equ	RAMEND	= 0x08ff
+                                 .equ	XRAMEND	= 0x0000
+                                 .equ	E2END	= 0x03ff
+                                 .equ	EEPROMEND	= 0x03ff
+                                 .equ	EEADRBITS	= 10
+                                 #pragma AVRPART MEMORY PROG_FLASH 32768
+                                 #pragma AVRPART MEMORY EEPROM 1024
+                                 #pragma AVRPART MEMORY INT_SRAM SIZE 2048
+                                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x100
+                                 
+                                 
+                                 
+                                 ; ***** BOOTLOADER DECLARATIONS ******************************************
+                                 .equ	NRWW_START_ADDR	= 0x3800
+                                 .equ	NRWW_STOP_ADDR	= 0x3fff
+                                 .equ	RWW_START_ADDR	= 0x0
+                                 .equ	RWW_STOP_ADDR	= 0x37ff
+                                 .equ	PAGESIZE	= 64
+                                 .equ	FIRSTBOOTSTART	= 0x3f00
+                                 .equ	SECONDBOOTSTART	= 0x3e00
+                                 .equ	THIRDBOOTSTART	= 0x3c00
+                                 .equ	FOURTHBOOTSTART	= 0x3800
+                                 .equ	SMALLBOOTSTART	= FIRSTBOOTSTART
+                                 .equ	LARGEBOOTSTART	= FOURTHBOOTSTART
+                                 
+                                 
+                                 
+                                 ; ***** INTERRUPT VECTORS ************************************************
+                                 .equ	INT0addr	= 0x0002	; External Interrupt Request 0
+                                 .equ	INT1addr	= 0x0004	; External Interrupt Request 1
+                                 .equ	PCI0addr	= 0x0006	; Pin Change Interrupt Request 0
+                                 .equ	PCI1addr	= 0x0008	; Pin Change Interrupt Request 0
+                                 .equ	PCI2addr	= 0x000a	; Pin Change Interrupt Request 1
+                                 .equ	WDTaddr	= 0x000c	; Watchdog Time-out Interrupt
+                                 .equ	OC2Aaddr	= 0x000e	; Timer/Counter2 Compare Match A
+                                 .equ	OC2Baddr	= 0x0010	; Timer/Counter2 Compare Match A
+                                 .equ	OVF2addr	= 0x0012	; Timer/Counter2 Overflow
+                                 .equ	ICP1addr	= 0x0014	; Timer/Counter1 Capture Event
+                                 .equ	OC1Aaddr	= 0x0016	; Timer/Counter1 Compare Match A
+                                 .equ	OC1Baddr	= 0x0018	; Timer/Counter1 Compare Match B
+                                 .equ	OVF1addr	= 0x001a	; Timer/Counter1 Overflow
+                                 .equ	OC0Aaddr	= 0x001c	; TimerCounter0 Compare Match A
+                                 .equ	OC0Baddr	= 0x001e	; TimerCounter0 Compare Match B
+                                 .equ	OVF0addr	= 0x0020	; Timer/Couner0 Overflow
+                                 .equ	SPIaddr	= 0x0022	; SPI Serial Transfer Complete
+                                 .equ	URXCaddr	= 0x0024	; USART Rx Complete
+                                 .equ	UDREaddr	= 0x0026	; USART, Data Register Empty
+                                 .equ	UTXCaddr	= 0x0028	; USART Tx Complete
+                                 .equ	ADCCaddr	= 0x002a	; ADC Conversion Complete
+                                 .equ	ERDYaddr	= 0x002c	; EEPROM Ready
+                                 .equ	ACIaddr	= 0x002e	; Analog Comparator
+                                 .equ	TWIaddr	= 0x0030	; Two-wire Serial Interface
+                                 .equ	SPMRaddr	= 0x0032	; Store Program Memory Read
+                                 
+                                 .equ	INT_VECTORS_SIZE	= 52	; size in words
+                                 
+                                 #endif  /* _M328PDEF_INC_ */
+                                 
+                                 ; ***** END OF FILE ******************************************************
+                                 
+                                 ; IE3064 Embedded Systems Engineering — Smart Traffic Junction Controller
+                                 ; Target        : ATmega328P (Arduino Uno / Standalone), 16 MHz Crystal
+                                 ; Language      : Pure AVR Assembly (avrasm2)
+                                 ; Toolchain     : Microchip Studio 7 / Atmel Studio
+                                 ;
+                                 ; Compliance summary:
+                                 ;   - Two-phase (N-S / E-W) intersection.
+                                 ;   - Every direction changes  GREEN -> YELLOW -> RED  when stopping and
+                                 ;     RED -> YELLOW -> GREEN  when starting (pre-green yellow). Never
+                                 ;     red -> green directly.
+                                 ;   - Sequence: NS_GREEN 3s, NS_YELLOW 2s, ALL_RED 1s, EW_PREP(yellow) 1s,
+                                 ;               EW_GREEN 3s, EW_YELLOW 2s, ALL_RED 1s, NS_PREP(yellow) 1s
+                                 ;     Total normal cycle = 3+2+1+1+3+2+1+1 = 14s (< 15s).
+                                 ;   - Pedestrian crossing: deferred request via INT0/PD2 hardware interrupt,
+                                 ;     started only after the vehicle phase and its All-Red clearance have
+                                 ;     completed. ALL FOUR directions stay red for the 5s countdown, then
+                                 ;     the next direction shows yellow before green (red->yellow->green).
+                                 ;   - 7-seg: COMMON_CATHODE switch (5161AS = cathode: COM->GND).
+                                 ;   - Night mode: LDR on ADC0/PC0, flashes both Yellow signals at 1 Hz.
+                                 ;   - Hysteresis: requires 5s (10 ticks) of bright light to exit Night mode.
+                                 ;==============================================================================
+                                 
+                                 .LIST
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 1: CONSTANTS & PIN DEFINITIONS
+                                 ;==============================================================================
+                                 
+                                 ; ---- FSM State Numbers (Encoded States for the Traffic Controller) ---------
+                                 .EQU STATE_NS_GREEN     = 0     ; North-South Green active phase
+                                 .EQU STATE_NS_YELLOW    = 1     ; North-South yellow transition (EW red)
+                                 .EQU STATE_ALL_RED_1    = 2     ; All-Red safety clearance after N-S phase
+                                 .EQU STATE_EW_PREP      = 3     ; East-West pre-green yellow warning
+                                 .EQU STATE_EW_GREEN     = 4     ; East-West Green active phase
+                                 .EQU STATE_EW_YELLOW    = 5     ; East-West yellow transition (NS red)
+                                 .EQU STATE_ALL_RED_2    = 6     ; All-Red safety clearance after E-W phase
+                                 .EQU STATE_NS_PREP      = 7     ; North-South pre-green yellow warning
+                                 .EQU STATE_PEDESTRIAN   = 8     ; Pedestrian crossing active state (All Red)
+                                 .EQU STATE_NIGHT        = 9     ; Night mode active (Flashing Yellow)
+                                 
+                                 ; ---- Timing Constants (Configured in seconds, Total Normal Cycle = 14s) ----
+                                 .EQU TIME_NS_GREEN   = 3     ; North-South Green duration (3s)
+                                 .EQU TIME_NS_YELLOW  = 2     ; North-South Yellow duration (2s)
+                                 .EQU TIME_ALL_RED    = 1     ; Intersection All-Red Clearance (1s)
+                                 .EQU TIME_PRE_GREEN  = 1     ; Red->Yellow pre-green safety warning (1s)
+                                 .EQU TIME_EW_GREEN   = 3     ; East-West Green duration (3s)
+                                 .EQU TIME_EW_YELLOW  = 2     ; East-West Yellow duration (2s)
+                                 
+                                 ; ---- Pedestrian & Night Mode Configuration Parameters ---------------------
+                                 .EQU PED_COUNT_START    = 5      ; Pedestrian crossing countdown window (5 seconds)
+                                 .EQU HYSTERESIS_TICKS   = 10     ; 10 ticks * 500ms = 5000ms (5 consecutive seconds of light required to exit Night mode)
+                                 .EQU LIGHT_THRESHOLD    = 100    ; ADCH reading below this threshold = Dark (triggers Night Mode)
+                                 
+                                 ; ---- PORTB Bit Mapping (Traffic Light LED Outputs) ------------------------
+                                 .EQU NS_RED   = 0    ; PB0: North-South Red LED
+                                 .EQU NS_YEL   = 1    ; PB1: North-South Yellow LED
+                                 .EQU NS_GRN   = 2    ; PB2: North-South Green LED
+                                 .EQU EW_RED   = 3    ; PB3: East-West Red LED
+                                 .EQU EW_YEL   = 4    ; PB4: East-West Yellow LED
+                                 .EQU EW_GRN   = 5    ; PB5: East-West Green LED
+                                 
+                                 ; ---- 7-Segment Display Configuration ----------------------------------------
+                                 ; 1 = COMMON CATHODE (e.g., 5161AS): Common pin connected to GND, segments active HIGH
+                                 .EQU COMMON_CATHODE  = 1
+                                 
+                                 ; ---- PORTD Bit Mapping ----------------------------------------------------
+                                 .EQU PED_BTN  = 2    ; PD2: INT0 Hardware Interrupt Pedestrian Push-Button Input
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 2: SRAM DATA MEMORY (State Variables & Flags)
+                                 ;==============================================================================
+                                 .DSEG
+                                 .ORG SRAM_START
+                                 
+000100                           current_state:        .BYTE 1     ; Stores active FSM state index (1 byte in SRAM)
+000101                           seconds_in_state:     .BYTE 1     ; Elapsed full seconds within the current state (1 byte)
+000102                           resume_state:         .BYTE 1     ; Stores vehicle state to resume after pedestrian crossing (1 byte)
+000103                           pedestrian_flag:      .BYTE 1     ; Flag: 1 = Pedestrian crossing requested via button (1 byte)
+000104                           pedestrian_countdown: .BYTE 1     ; Active countdown value (5 down to 0) (1 byte)
+000105                           hysteresis_counter:   .BYTE 1     ; Tracks consecutive 500ms ticks of bright light (1 byte)
+000106                           adc_result:           .BYTE 1     ; Stores the latest 8-bit ADCH reading from LDR (1 byte)
+000107                           tick_flag:            .BYTE 1     ; Set by Timer1 ISR every 500ms to drive main loop (1 byte)
+000108                           half_tick_counter:    .BYTE 1     ; Toggles every 500ms (2 ticks = exactly 1 second) (1 byte)
+000109                           flash_state:          .BYTE 1     ; Toggle variable (0/1) for 1 Hz night mode flashing (1 byte)
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 3: INTERRUPT VECTOR TABLE
+                                 ;==============================================================================
+                                 .CSEG
+                                 .ORG 0x0000
+000000 940c 0035                     jmp RESET              ; 0x0000: System Reset Vector (Jump to boot initialization)
+000002 940c 008a                     jmp ISR_INT0           ; 0x0002: External Interrupt 0 (Pedestrian Button on PD2)
+000004 940c 0034                     jmp DEFAULT_ISR        ; 0x0004: INT1 (Unused, catch-all)
+000006 940c 0034                     jmp DEFAULT_ISR        ; 0x0006: PCINT0 (Unused, catch-all)
+000008 940c 0034                     jmp DEFAULT_ISR        ; 0x0008: PCINT1 (Unused, catch-all)
+00000a 940c 0034                     jmp DEFAULT_ISR        ; 0x000A: PCINT2 (Unused, catch-all)
+00000c 940c 0034                     jmp DEFAULT_ISR        ; 0x000C: WDT (Unused, catch-all)
+00000e 940c 0034                     jmp DEFAULT_ISR        ; 0x000E: TIMER2 COMPA (Unused, catch-all)
+000010 940c 0034                     jmp DEFAULT_ISR        ; 0x0010: TIMER2 COMPB (Unused, catch-all)
+000012 940c 0034                     jmp DEFAULT_ISR        ; 0x0012: TIMER2 OVF (Unused, catch-all)
+000014 940c 0034                     jmp DEFAULT_ISR        ; 0x0014: TIMER1 CAPT (Unused, catch-all)
+000016 940c 0098                     jmp ISR_TIMER1_COMPA   ; 0x0016: Timer1 Compare Match A (500ms system tick timer interrupt)
+000018 940c 0034                     jmp DEFAULT_ISR        ; 0x0018: TIMER1 COMPB (Unused, catch-all)
+00001a 940c 0034                     jmp DEFAULT_ISR        ; 0x001A: TIMER1 OVF (Unused, catch-all)
+00001c 940c 0034                     jmp DEFAULT_ISR        ; 0x001C: TIMER0 COMPA (Unused, catch-all)
+00001e 940c 0034                     jmp DEFAULT_ISR        ; 0x001E: TIMER0 COMPB (Unused, catch-all)
+000020 940c 0034                     jmp DEFAULT_ISR        ; 0x0020: TIMER0 OVF (Unused, catch-all)
+000022 940c 0034                     jmp DEFAULT_ISR        ; 0x0022: SPI STC (Unused, catch-all)
+000024 940c 0034                     jmp DEFAULT_ISR        ; 0x0024: USART RX (Unused, catch-all)
+000026 940c 0034                     jmp DEFAULT_ISR        ; 0x0026: USART UDRE (Unused, catch-all)
+000028 940c 0034                     jmp DEFAULT_ISR        ; 0x0028: USART TX (Unused, catch-all)
+00002a 940c 0034                     jmp DEFAULT_ISR        ; 0x002A: ADC Conversion Complete (Unused, polled mode used instead)
+00002c 940c 0034                     jmp DEFAULT_ISR        ; 0x002C: EEPROM Ready (Unused, catch-all)
+00002e 940c 0034                     jmp DEFAULT_ISR        ; 0x002E: Analog Comparator (Unused, catch-all)
+000030 940c 0034                     jmp DEFAULT_ISR        ; 0x0030: TWI / I2C (Unused, catch-all)
+000032 940c 0034                     jmp DEFAULT_ISR        ; 0x0032: Store Program Memory Ready (Unused, catch-all)
+                                 
+                                 DEFAULT_ISR:
+000034 9518                          reti                   ; Catch-all dummy ISR: return from interrupt immediately for unhandled vectors
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 4: INITIALISATION & MAIN SUPERVISOR LOOP
+                                 ;==============================================================================
+                                 
+                                 RESET:
+                                     ; Initialize Hardware Stack Pointer to top of RAM
+000035 ef0f                          ldi   r16, low(RAMEND)        ; Load low byte of RAM top address into r16 (e.g., 0xFF for ATmega328P)
+000036 bf0d                          out   SPL, r16                ; Write low byte into Stack Pointer Low register (SPL)
+000037 e008                          ldi   r16, high(RAMEND)       ; Load high byte of RAM top address into r16 (e.g., 0x08 for ATmega328P)
+000038 bf0e                          out   SPH, r16                ; Write high byte into Stack Pointer High register (SPH)
+                                 
+                                     ; Initialize Microcontroller Peripherals
+000039 d026                          rcall init_ports              ; Call subroutine to set up I/O pin directions and pull-ups
+00003a d032                          rcall init_timer1             ; Call subroutine to configure Timer1 for 500ms intervals
+00003b d041                          rcall init_adc                ; Call subroutine to configure the LDR analog-to-digital converter
+00003c d047                          rcall init_int0               ; Call subroutine to configure the pedestrian button external interrupt
+                                 
+                                     ; Clear and Initialize SRAM Variables
+00003d 2700                          clr   r16                     ; Clear register r16 (sets r16 = 0x00)
+00003e 9300 0101                     sts   seconds_in_state, r16   ; Clear state timer counter in SRAM
+000040 9300 0103                     sts   pedestrian_flag, r16    ; Clear pedestrian call flag in SRAM (0 = no call pending)
+000042 9300 0104                     sts   pedestrian_countdown, r16; Clear pedestrian crossing countdown variable in SRAM
+000044 9300 0105                     sts   hysteresis_counter, r16 ; Clear LDR stability counter in SRAM
+000046 9300 0107                     sts   tick_flag, r16          ; Clear 500ms timer tick flag in SRAM
+000048 9300 0108                     sts   half_tick_counter, r16  ; Clear 500ms half-tick auxiliary counter in SRAM
+00004a 9300 0109                     sts   flash_state, r16        ; Clear night mode flash toggle state in SRAM
+                                     
+                                     ; Set starting traffic state to North-South Green
+00004c e000                          ldi   r16, STATE_NS_GREEN     ; Load constant value representing NS Green state (0) into r16
+00004d 9300 0100                     sts   current_state, r16      ; Save starting state ID into SRAM variable 'current_state'
+                                 
+                                     ; Apply Initial Hardware Outputs
+00004f d12d                          rcall update_leds_for_state   ; Drive physical traffic light pins to match NS Green state
+000050 e03a                          ldi   r19, 10                 ; Load index value 10 into r19 (Index 10 makes 7-segment display blank)
+000051 d165                          rcall update_countdown_display ; Output blank character to 7-segment display at boot
+                                 
+                                     ; Configure Sleep Mode (Idle Mode) to optimize simulator CPU efficiency
+000052 e001                          ldi   r16, (1<<SE)            ; Set Sleep Enable (SE) bit in r16
+000053 bf03                          out   SMCR, r16               ; Write config byte to Sleep Mode Control Register (SMCR)
+                                 
+000054 9478                          sei                           ; Enable Global Interrupts (Sets I-bit in SREG)
+                                 
+                                 main_loop:
+000055 9100 0107                     lds   r16, tick_flag          ; Load the 500ms tick flag from SRAM into r16
+000057 2300                          tst   r16                     ; Test r16 contents (sets Zero flag if r16 == 0x00)
+000058 f411                          brne  do_tick                 ; If tick_flag is non-zero (timer expired), jump to do_tick processing
+000059 9588                          sleep                         ; Otherwise, put CPU in low-power idle sleep until next interrupt wakes it
+00005a cffa                          rjmp  main_loop               ; Unconditional jump back to re-check tick flag after waking up
+                                 
+                                 do_tick:
+00005b 2700                          clr   r16                     ; Clear register r16 (r16 = 0x00)
+00005c 9300 0107                     sts   tick_flag, r16          ; Reset tick flag in SRAM so it handles only once per tick interval
+00005e d043                          rcall handle_tick             ; Execute core FSM state transitions, time updates, and LDR sensor checking
+00005f cff5                          rjmp  main_loop               ; Unconditional jump back to main loop
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 5: PERIPHERAL INITIALISATION SUBROUTINES
+                                 ;==============================================================================
+                                 
+                                 init_ports:
+                                     ; PORTB Setup: PB0..PB5 configured as outputs for Traffic Light LEDs
+000060 e30f                          ldi   r16, 0b00111111         ; Set bits 0 to 5 as output drivers
+000061 b904                          out   DDRB, r16               ; Write configuration to Data Direction Register B
+000062 2700                          clr   r16                     ; Clear r16 (0x00)
+000063 b905                          out   PORTB, r16              ; Ensure all PORTB output pins start LOW
+                                 
+                                     ; PORTD Setup: PD2 configured as input (Pedestrian Button), PD3..PD7 as outputs (7-seg segments A..E)
+000064 ef08                          ldi   r16, 0b11111000         ; Set bits 3-7 as outputs, bits 0-2 as inputs
+000065 b90a                          out   DDRD, r16               ; Write configuration to Data Direction Register D
+000066 e004                          ldi   r16, (1<<PED_BTN)        ; Create bitmask for PD2 pull-up resistor activation
+000067 b90b                          out   PORTD, r16              ; Activate internal pull-up resistor on pedestrian push-button input pin (PD2)
+                                 
+                                     ; PORTC Setup: PC0 configured as input (LDR ADC), PC1/PC2 configured as outputs (7-seg segments F,G)
+000068 e006                          ldi   r16, 0b00000110         ; Set PC1 and PC2 as outputs, PC0 (ADC0) as analog input
+000069 b907                          out   DDRC, r16               ; Write configuration to Data Direction Register C
+00006a 2700                          clr   r16                     ; Clear r16
+00006b b908                          out   PORTC, r16              ; Set PORTC outputs LOW
+00006c 9508                          ret                           ; Return from subroutine
+                                 
+                                 init_timer1:
+                                     ; Setup Timer1 in CTC Mode (Clear Timer on Compare Match, TOP = OCR1A)
+                                     ; Prescaler = 256. For 16 MHz crystal: 16,000,000 / 256 = 62,500 Hz clock.
+                                     ; Target tick interval = 500ms (0.5s). Counts = 62,500 * 0.5 = 31,250.
+                                     ; OCR1A = 31250 - 1 = 31249 (0x7A11)
+00006d 2700                          clr   r16                     ; Clear r16
+00006e 9300 0080                     sts   TCCR1A, r16             ; Clear Timer/Counter 1 Control Register A (normal port operation)
+000070 e00c                          ldi   r16, (1<<WGM12) | (1<<CS12) ; Enable CTC mode (WGM12=1) and set Prescaler to 256 (CS12=1)
+000071 9300 0081                     sts   TCCR1B, r16             ; Write configuration to TCCR1B
+000073 e70a                          ldi   r16, high(31249)        ; Load high byte of compare match target count (0x7A) into r16
+000074 9300 0089                     sts   OCR1AH, r16             ; Store high byte into Output Compare Register 1 A High
+000076 e101                          ldi   r16, low(31249)         ; Load low byte of compare match target count (0x11) into r16
+000077 9300 0088                     sts   OCR1AL, r16             ; Store low byte into Output Compare Register 1 A Low
+000079 e002                          ldi   r16, (1<<OCIE1A)        ; Create bitmask to enable Timer1 Compare Match A Interrupt
+00007a 9300 006f                     sts   TIMSK1, r16             ; Write mask to Timer Interrupt Mask Register 1
+00007c 9508                          ret                           ; Return from subroutine
+                                 
+                                 init_adc:
+                                     ; Configure ADC: AVcc reference voltage, Left-adjusted result (8-bit resolution in ADCH), Channel ADC0 (PC0)
+00007d e600                          ldi   r16, (1<<REFS0) | (1<<ADLAR) ; REFS0 = AVcc reference with external capacitor on AREF, ADLAR = Left adjust result for 8-bit read
+00007e 9300 007c                     sts   ADMUX, r16              ; Write configuration to ADC Multiplexer Selection Register
+                                     ; Enable ADC peripheral, set Prescaler to 128 (16 MHz / 128 = 125 kHz safe ADC operating clock)
+000080 e807                          ldi   r16, (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0) ; ADEN = Enable ADC, ADPS2..0 = Prescaler division factor 128
+000081 9300 007a                     sts   ADCSRA, r16             ; Write configuration to ADC Control and Status Register A
+000083 9508                          ret                           ; Return from subroutine
+                                 
+                                 init_int0:
+                                     ; Configure External Interrupt INT0 (PD2) to trigger on falling edge (button press to ground)
+000084 e002                          ldi   r16, (1<<ISC01)         ; ISC01 = 1, ISC00 = 0 sets falling edge interrupt trigger mode for INT0
+000085 9300 0069                     sts   EICRA, r16              ; Write configuration to External Interrupt Control Register A
+000087 e001                          ldi   r16, (1<<INT0)          ; Create bitmask to enable external interrupt request 0
+000088 bb0d                          out   EIMSK, r16              ; Write mask to External Interrupt Mask Register
+000089 9508                          ret                           ; Return from subroutine
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 6: INTERRUPT SERVICE ROUTINES (ISRs)
+                                 ;==============================================================================
+                                 
+                                 ISR_INT0:
+00008a 930f                          push  r16                     ; Save register r16 onto the hardware stack
+00008b b70f                          in    r16, SREG               ; Read Status Register (SREG) into r16 to save CPU flags
+00008c 930f                          push  r16                     ; Save SREG value onto the stack
+                                 
+                                     ; Safety Check: Ignore pedestrian button presses if currently in Night Mode
+00008d 9100 0100                     lds   r16, current_state      ; Load current state index from SRAM into r16
+00008f 3009                          cpi   r16, STATE_NIGHT        ; Compare current state with Night Mode state ID (9)
+000090 f019                          breq  int0_exit               ; If in night mode, skip setting pedestrian flag and exit
+                                 
+                                     ; Set deferred pedestrian crossing request flag
+000091 e001                          ldi   r16, 1                  ; Load value 1 into r16 indicating a pending pedestrian request
+000092 9300 0103                     sts   pedestrian_flag, r16    ; Store flag in SRAM variable 'pedestrian_flag'
+                                 
+                                 int0_exit:
+000094 910f                          pop   r16                     ; Restore saved SREG value from stack into r16
+000095 bf0f                          out   SREG, r16               ; Restore CPU status flags
+000096 910f                          pop   r16                     ; Restore original r16 register contents from stack
+000097 9518                          reti                          ; Return from interrupt (automatically re-enables global interrupts)
+                                 
+                                 ISR_TIMER1_COMPA:
+000098 930f                          push  r16                     ; Save r16 register onto stack
+000099 b70f                          in    r16, SREG               ; Read Status Register into r16
+00009a 930f                          push  r16                     ; Save SREG onto stack
+                                 
+00009b e001                          ldi   r16, 1                  ; Load value 1 into r16
+00009c 9300 0107                     sts   tick_flag, r16          ; Set tick_flag in SRAM to signal main loop that 500ms has elapsed
+                                 
+00009e 910f                          pop   r16                     ; Restore SREG from stack
+00009f bf0f                          out   SREG, r16               ; Restore status flags
+0000a0 910f                          pop   r16                     ; Restore r16 from stack
+0000a1 9518                          reti                          ; Return from interrupt
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 7: CORE FSM LOGIC & TIMING CONTROLLER
+                                 ;==============================================================================
+                                 
+                                 handle_tick:
+0000a2 d0cc                          rcall read_adc                 ; Call helper function to sample LDR light sensor value into adc_result variable
+                                 
+0000a3 9100 0100                     lds   r16, current_state      ; Load current FSM state from SRAM into r16
+0000a5 3009                          cpi   r16, STATE_NIGHT        ; Compare state with Night Mode ID
+0000a6 f409                          brne  check_darkness          ; If not in night mode, proceed to check ambient light levels
+0000a7 c0ad                          rjmp  process_night_mode       ; If already in night mode, jump directly to night mode management routine
+                                 
+                                 check_darkness:
+                                     ; --- NORMAL / PEDESTRIAN ENVIRONMENT MONITORING ---
+0000a8 9110 0106                     lds   r17, adc_result         ; Load latest 8-bit LDR ADC reading from SRAM into r17
+0000aa 3614                          cpi   r17, LIGHT_THRESHOLD    ; Compare ADC reading against light threshold constant (100)
+0000ab f408                          brsh  tick_timer              ; If ADC value >= 100 (bright ambient light), continue normal timing cycle
+0000ac c09c                          rjmp  enter_night_mode         ; If ADC value < 100 (dark ambient conditions), switch immediately to Night Mode
+                                 
+                                 tick_timer:
+                                     ; Convert 500ms ticks into 1-second increments (2 ticks = 1 second)
+0000ad 9100 0108                     lds   r16, half_tick_counter  ; Load current half-tick flip-flop counter state into r16
+0000af e011                          ldi   r17, 1                  ; Load bitmask value 1 into r17
+0000b0 2701                          eor   r16, r17                ; Exclusive-OR half_tick_counter with 1 (toggles 0 to 1, or 1 to 0)
+0000b1 9300 0108                     sts   half_tick_counter, r16  ; Save toggled state back to SRAM variable 'half_tick_counter'
+0000b3 2300                          tst   r16                     ; Test r16 (sets Zero flag if toggle resulted in 0x00)
+0000b4 f009                          breq  second_elapsed          ; If Zero flag is set (every 2nd tick = 1 full second), proceed to update state timers
+0000b5 c0b8                          rjmp  exit_tick               ; Otherwise (first 500ms half-tick), exit tick handler and wait for next tick
+                                 
+                                 second_elapsed:
+                                     ; --- EXACTLY 1 SECOND HAS PASSED: UPDATE FSM ---
+0000b6 9100 0100                     lds   r16, current_state      ; Load current state index into r16
+0000b8 3008                          cpi   r16, STATE_PEDESTRIAN   ; Check if system is currently executing a pedestrian crossing countdown
+0000b9 f409                          brne  increment_timer         ; If not in pedestrian mode, proceed to increment standard vehicle state timer
+0000ba c075                          rjmp  process_pedestrian_countdown ; If in pedestrian mode, jump to handle pedestrian countdown decrementing
+                                 
+                                 increment_timer:
+0000bb 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds count for the current state from SRAM into r17
+0000bd 9513                          inc   r17                     ; Increment elapsed second counter by 1
+0000be 9310 0101                     sts   seconds_in_state, r17   ; Store updated second count back into SRAM variable 'seconds_in_state'
+                                 
+                                     ; FSM State Dispatcher Trampoline table (Evaluates current state using sequential conditional jumps)
+0000c0 3000                          cpi   r16, STATE_NS_GREEN     ; Compare current state with North-South Green ID (0)
+0000c1 f409                          brne  skip_ns_green           ; If not NS Green, skip to next state check
+0000c2 c016                          rjmp  check_ns_green          ; If NS Green, jump to evaluate its duration timeout
+                                 
+                                 skip_ns_green:
+0000c3 3001                          cpi   r16, STATE_NS_YELLOW    ; Compare state with North-South Yellow ID (1)
+0000c4 f409                          brne  skip_ns_yellow          ; If not NS Yellow, skip
+0000c5 c01a                          rjmp  check_ns_yellow         ; Jump to evaluate NS Yellow duration timeout
+                                 
+                                 skip_ns_yellow:
+0000c6 3002                          cpi   r16, STATE_ALL_RED_1    ; Compare state with First All-Red Clearance ID (2)
+0000c7 f409                          brne  skip_all_red_1          ; If not All-Red 1, skip
+0000c8 c01e                          rjmp  check_all_red_1         ; Jump to evaluate All-Red 1 duration timeout
+                                 
+                                 skip_all_red_1:
+0000c9 3003                          cpi   r16, STATE_EW_PREP      ; Compare state with East-West Pre-Green Yellow ID (3)
+0000ca f409                          brne  skip_ew_prep            ; If not EW Prep, skip
+0000cb c02b                          rjmp  check_ew_prep           ; Jump to evaluate EW Prep duration timeout
+                                 
+                                 skip_ew_prep:
+0000cc 3004                          cpi   r16, STATE_EW_GREEN     ; Compare state with East-West Green ID (4)
+0000cd f409                          brne  skip_ew_green           ; If not EW Green, skip
+0000ce c02f                          rjmp  check_ew_green          ; Jump to evaluate EW Green duration timeout
+                                 
+                                 skip_ew_green:
+0000cf 3005                          cpi   r16, STATE_EW_YELLOW    ; Compare state with East-West Yellow ID (5)
+0000d0 f409                          brne  skip_ew_yellow          ; If not EW Yellow, skip
+0000d1 c033                          rjmp  check_ew_yellow         ; Jump to evaluate EW Yellow duration timeout
+                                 
+                                 skip_ew_yellow:
+0000d2 3006                          cpi   r16, STATE_ALL_RED_2    ; Compare state with Second All-Red Clearance ID (6)
+0000d3 f409                          brne  skip_all_red_2          ; If not All-Red 2, skip
+0000d4 c037                          rjmp  check_all_red_2         ; Jump to evaluate All-Red 2 duration timeout
+                                 
+                                 skip_all_red_2:
+0000d5 3007                          cpi   r16, STATE_NS_PREP      ; Compare state with North-South Pre-Green Yellow ID (7)
+0000d6 f409                          brne  skip_ns_prep            ; If not NS Prep, skip
+0000d7 c044                          rjmp  check_ns_prep           ; Jump to evaluate NS Prep duration timeout
+                                 
+                                 skip_ns_prep:
+0000d8 c095                          rjmp  exit_tick               ; Fallback safety exit if state index is unhandled
+                                 
+                                 ; --- INDIVIDUAL FSM PHASE DURATION EVALUATION ---
+                                 
+                                 check_ns_green:
+0000d9 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in NS Green state
+0000db 3013                          cpi   r17, TIME_NS_GREEN       ; Compare elapsed time against duration constant (3 seconds)
+0000dc f408                          brsh  end_ns_green            ; If elapsed time >= 3s, branch to transition out of NS Green
+0000dd c090                          rjmp  exit_tick               ; Otherwise, duration not met yet; exit tick handler
+                                 end_ns_green:
+0000de e001                          ldi   r16, STATE_NS_YELLOW    ; Load next state ID (STATE_NS_YELLOW = 1) into r16
+0000df c062                          rjmp  change_state            ; Jump to state transition helper routine
+                                 
+                                 check_ns_yellow:
+0000e0 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in NS Yellow state
+0000e2 3012                          cpi   r17, TIME_NS_YELLOW      ; Compare elapsed time against duration constant (2 seconds)
+0000e3 f408                          brsh  end_ns_yellow           ; If elapsed time >= 2s, branch to transition out of NS Yellow
+0000e4 c089                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_ns_yellow:
+0000e5 e002                          ldi   r16, STATE_ALL_RED_1    ; Load next state ID (STATE_ALL_RED_1 = 2) into r16
+0000e6 c05b                          rjmp  change_state            ; Jump to state transition routine
+                                 
+                                 check_all_red_1:
+0000e7 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in All-Red 1 state
+0000e9 3011                          cpi   r17, TIME_ALL_RED        ; Compare elapsed time against duration constant (1 second)
+0000ea f408                          brsh  end_all_red_1           ; If elapsed time >= 1s, branch to complete clearance
+0000eb c082                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_all_red_1:
+                                     ; All-red clearance complete: check if pedestrian button was pressed during the cycle
+0000ec 9120 0103                     lds   r18, pedestrian_flag    ; Load pedestrian request flag from SRAM into r18
+0000ee 2322                          tst   r18                     ; Test flag (sets Zero flag if pedestrian_flag == 0)
+0000ef f411                          brne  ped_from_ar1            ; If flag is non-zero (pedestrian button was pushed), branch to handle pedestrian crossing
+0000f0 e003                          ldi   r16, STATE_EW_PREP      ; Normal flow: load EW pre-green yellow warning state ID (3) into r16
+0000f1 c050                          rjmp  change_state            ; Jump to state transition routine
+                                 ped_from_ar1:
+0000f2 e003                          ldi   r16, STATE_EW_PREP      ; Load resumption state ID (EW pre-green yellow warning = 3) into r16
+0000f3 9300 0102                     sts   resume_state, r16       ; Save this state in SRAM variable 'resume_state' to resume traffic after pedestrian phase
+0000f5 e008                          ldi   r16, STATE_PEDESTRIAN   ; Load Pedestrian crossing state ID (8) into r16
+0000f6 c02c                          rjmp  start_pedestrian_phase  ; Jump to initialize pedestrian crossing mode
+                                 
+                                 check_ew_prep:
+0000f7 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in EW Prep state
+0000f9 3011                          cpi   r17, TIME_PRE_GREEN      ; Compare elapsed time against duration constant (1 second)
+0000fa f408                          brsh  end_ew_prep             ; If elapsed time >= 1s, branch to transition out of EW Prep
+0000fb c072                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_ew_prep:
+0000fc e004                          ldi   r16, STATE_EW_GREEN     ; Load next state ID (STATE_EW_GREEN = 4) into r16
+0000fd c044                          rjmp  change_state            ; Jump to state transition routine
+                                 
+                                 check_ew_green:
+0000fe 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in EW Green state
+000100 3013                          cpi   r17, TIME_EW_GREEN       ; Compare elapsed time against duration constant (3 seconds)
+000101 f408                          brsh  end_ew_green            ; If elapsed time >= 3s, branch to transition out of EW Green
+000102 c06b                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_ew_green:
+000103 e005                          ldi   r16, STATE_EW_YELLOW    ; Load next state ID (STATE_EW_YELLOW = 5) into r16
+000104 c03d                          rjmp  change_state            ; Jump to state transition routine
+                                 
+                                 check_ew_yellow:
+000105 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in EW Yellow state
+000107 3012                          cpi   r17, TIME_EW_YELLOW      ; Compare elapsed time against duration constant (2 seconds)
+000108 f408                          brsh  end_ew_yellow           ; If elapsed time >= 2s, branch to transition out of EW Yellow
+000109 c064                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_ew_yellow:
+00010a e006                          ldi   r16, STATE_ALL_RED_2    ; Load next state ID (STATE_ALL_RED_2 = 6) into r16
+00010b c036                          rjmp  change_state            ; Jump to state transition routine
+                                 
+                                 check_all_red_2:
+00010c 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in All-Red 2 state
+00010e 3011                          cpi   r17, TIME_ALL_RED        ; Compare elapsed time against duration constant (1 second)
+00010f f408                          brsh  end_all_red_2           ; If elapsed time >= 1s, branch to complete clearance
+000110 c05d                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_all_red_2:
+                                     ; All-red clearance complete: check if pedestrian button was pressed during the cycle
+000111 9120 0103                     lds   r18, pedestrian_flag    ; Load pedestrian request flag from SRAM into r18
+000113 2322                          tst   r18                     ; Test flag
+000114 f411                          brne  ped_from_ar2            ; If flag is non-zero, branch to handle pedestrian crossing
+000115 e007                          ldi   r16, STATE_NS_PREP      ; Normal flow: load NS pre-green yellow warning state ID (7) into r16
+000116 c02b                          rjmp  change_state            ; Jump to state transition routine
+                                 ped_from_ar2:
+000117 e007                          ldi   r16, STATE_NS_PREP      ; Load resumption state ID (NS pre-green yellow warning = 7) into r16
+000118 9300 0102                     sts   resume_state, r16       ; Save resumption state in SRAM variable 'resume_state'
+00011a e008                          ldi   r16, STATE_PEDESTRIAN   ; Load Pedestrian crossing state ID (8) into r16
+00011b c007                          rjmp  start_pedestrian_phase  ; Jump to initialize pedestrian crossing mode
+                                 
+                                 check_ns_prep:
+00011c 9110 0101                     lds   r17, seconds_in_state   ; Load elapsed seconds in NS Prep state
+00011e 3011                          cpi   r17, TIME_PRE_GREEN      ; Compare elapsed time against duration constant (1 second)
+00011f f408                          brsh  end_ns_prep             ; If elapsed time >= 1s, branch to transition out of NS Prep
+000120 c04d                          rjmp  exit_tick               ; Otherwise, exit tick handler
+                                 end_ns_prep:
+000121 e000                          ldi   r16, STATE_NS_GREEN     ; Load next state ID (STATE_NS_GREEN = 0) to loop back to start of normal cycle
+000122 c01f                          rjmp  change_state            ; Jump to state transition routine
+                                 
+                                 
+                                 start_pedestrian_phase:
+000123 9300 0100                     sts   current_state, r16      ; Store Pedestrian state ID (8) into 'current_state' in SRAM
+000125 2700                          clr   r16                     ; Clear r16 (0x00)
+000126 9300 0101                     sts   seconds_in_state, r16   ; Reset elapsed seconds counter for the pedestrian state
+000128 9300 0103                     sts   pedestrian_flag, r16    ; Clear pedestrian request flag in SRAM (acknowledges request)
+00012a e035                          ldi   r19, PED_COUNT_START    ; Load countdown start value constant (5 seconds) into r19
+00012b 9330 0104                     sts   pedestrian_countdown, r19 ; Store countdown value into SRAM variable 'pedestrian_countdown'
+00012d d04f                          rcall update_leds_for_state   ; Update traffic light hardware outputs (all red during pedestrian phase)
+00012e d088                          rcall update_countdown_display ; Output countdown number '5' to the 7-segment display
+00012f c03e                          rjmp  exit_tick               ; Exit tick handler
+                                 
+                                 process_pedestrian_countdown:
+000130 9130 0104                     lds   r19, pedestrian_countdown ; Load remaining pedestrian countdown seconds from SRAM into r19
+000132 2333                          tst   r19                     ; Test countdown value (sets Zero flag if r19 == 0)
+000133 f409                          brne  countdown_not_zero      ; If countdown is not zero yet, branch to decrement it
+000134 c008                          rjmp  end_pedestrian_phase    ; If countdown has reached zero, jump to terminate pedestrian phase
+                                 countdown_not_zero:
+000135 953a                          dec   r19                     ; Decrement countdown value by 1 second
+000136 9330 0104                     sts   pedestrian_countdown, r19 ; Store updated countdown value back into SRAM
+000138 d07e                          rcall update_countdown_display ; Update 7-segment display with new countdown digit
+000139 3030                          cpi   r19, 0                  ; Compare updated countdown with 0
+00013a f409                          brne  countdown_still_going   ; If not zero yet, branch to exit tick
+00013b c001                          rjmp  end_pedestrian_phase    ; If countdown just hit zero, terminate pedestrian phase
+                                 countdown_still_going:
+00013c c031                          rjmp  exit_tick               ; Exit tick handler
+                                 
+                                 end_pedestrian_phase:
+00013d e03a                          ldi   r19, 10                 ; Load index value 10 into r19 to blank the 7-segment display
+00013e d078                          rcall update_countdown_display ; Output blank display pattern to hardware
+00013f 9100 0102                     lds   r16, resume_state       ; Load saved vehicle resumption state from SRAM into r16
+000141 c000                          rjmp  change_state            ; Jump to state transition routine to resume normal traffic sequence
+                                 
+                                 change_state:
+000142 9300 0100                     sts   current_state, r16      ; Store new state ID into SRAM variable 'current_state'
+000144 2700                          clr   r16                     ; Clear r16 (0x00)
+000145 9300 0101                     sts   seconds_in_state, r16   ; Reset phase elapsed seconds timer variable in SRAM to 0
+000147 d035                          rcall update_leds_for_state   ; Update physical traffic light LED outputs for the new state
+000148 c025                          rjmp  exit_tick               ; Exit tick handler
+                                 
+                                 ; --- NIGHT MODE & SENSOR HYSTERESIS LOGIC ---
+                                 
+                                 enter_night_mode:
+000149 e009                          ldi   r16, STATE_NIGHT        ; Load Night Mode state ID (9) into r16
+00014a 9300 0100                     sts   current_state, r16      ; Store Night state ID into SRAM variable 'current_state'
+00014c 2700                          clr   r16                     ; Clear r16 (0x00)
+00014d 9300 0105                     sts   hysteresis_counter, r16  ; Reset stabilization counter variable in SRAM to 0
+00014f 9300 0109                     sts   flash_state, r16        ; Clear flash toggle variable in SRAM
+000151 e03a                          ldi   r19, 10                 ; Load index value 10 into r19 to blank 7-segment display in night mode
+000152 d064                          rcall update_countdown_display ; Output blank display pattern
+000153 d029                          rcall update_leds_for_state   ; Update hardware LED outputs for night mode
+000154 c019                          rjmp  exit_tick               ; Exit tick handler
+                                 
+                                 process_night_mode:
+                                     ; Toggle 1 Hz flash state every 500ms tick
+000155 9100 0109                     lds   r16, flash_state        ; Load current flash toggle state (0 or 1) from SRAM into r16
+000157 9500                          com   r16                     ; Perform logical one's complement bit inversion on r16 (flips 0 to 255, 1 to 254)
+000158 7001                          andi  r16, 0x01               ; Mask out all bits except bit 0 (results in clean alternating 0 / 1 toggle)
+000159 9300 0109                     sts   flash_state, r16        ; Store updated flash state back into SRAM variable 'flash_state'
+00015b d021                          rcall update_leds_for_state   ; Update yellow LED flashing output based on new flash state
+                                 
+                                     ; Hysteresis Filtering: Check if ambient light has returned
+00015c 9110 0106                     lds   r17, adc_result         ; Load latest LDR ADC reading from SRAM into r17
+00015e 3614                          cpi   r17, LIGHT_THRESHOLD    ; Compare ADC reading against light threshold constant (100)
+00015f f408                          brsh  bright_light_detected   ; If ADC value >= 100 (light returned), branch to increment hysteresis stability counter
+000160 c00a                          rjmp  reset_hysteresis         ; If ADC value < 100 (still dark), jump to clear/reset hysteresis counter
+                                     
+                                 bright_light_detected:
+                                     ; Bright light detected: increment consecutive stability counter
+000161 9120 0105                     lds   r18, hysteresis_counter ; Load current consecutive stability tick count from SRAM into r18
+000163 9523                          inc   r18                     ; Increment stability tick count by 1
+000164 9320 0105                     sts   hysteresis_counter, r18 ; Store updated count back into SRAM variable 'hysteresis_counter'
+000166 302a                          cpi   r18, HYSTERESIS_TICKS   ; Compare stability count against threshold constant (10 ticks = 5 seconds)
+000167 f408                          brsh  hysteresis_complete     ; If stability count >= 10 ticks, branch to confirm return to normal mode
+000168 c005                          rjmp  exit_tick               ; Otherwise, keep waiting in night mode; exit tick handler
+                                 
+                                 hysteresis_complete:
+                                     ; 5 consecutive seconds of bright light confirmed -> Safely exit Night Mode to NS Pre-Green
+000169 e007                          ldi   r16, STATE_NS_PREP      ; Load North-South Pre-Green Yellow warning state ID (7) into r16
+00016a cfd7                          rjmp  change_state            ; Jump to state transition routine to resume normal operation
+                                 
+                                 reset_hysteresis:
+00016b 2700                          clr   r16                     ; Clear r16 (0x00)
+00016c 9300 0105                     sts   hysteresis_counter, r16 ; Reset hysteresis stability counter in SRAM back to 0 because darkness re-occurred
+                                 
+                                 exit_tick:
+00016e 9508                          ret                           ; Return from handle_tick subroutine
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 8: HARDWARE HELPER FUNCTIONS
+                                 ;==============================================================================
+                                 
+                                 read_adc:
+00016f 9100 007a                     lds   r16, ADCSRA             ; Load ADC Control and Status Register A from SRAM into r16
+000171 6400                          ori   r16, (1<<ADSC)          ; Set Start Conversion bit (ADSC) using bitwise OR (r16 |= 0x40)
+000172 9300 007a                     sts   ADCSRA, r16             ; Write updated control byte back to ADCSRA to trigger analog-to-digital conversion
+                                 wait_adc:
+000174 9100 007a                     lds   r16, ADCSRA             ; Load ADCSRA status register into r16
+000176 fd06                          sbrc  r16, ADSC               ; Skip next instruction if ADSC bit has cleared (hardware clears ADSC automatically when conversion finishes)
+000177 cffc                          rjmp  wait_adc                ; If ADSC is still set, loop back to wait for conversion completion
+000178 9100 0079                     lds   r16, ADCH               ; Read 8-bit left-adjusted conversion result byte from ADC Data Register High (ADCH)
+00017a 9300 0106                     sts   adc_result, r16         ; Store 8-bit LDR sensor reading into SRAM variable 'adc_result'
+00017c 9508                          ret                           ; Return from subroutine
+                                 
+                                 update_leds_for_state:
+00017d 9100 0100                     lds   r16, current_state      ; Load current state index from SRAM into r16
+                                     
+00017f 3000                          cpi   r16, STATE_NS_GREEN     ; Compare state with NS Green (0)
+000180 f409                          brne  chk_ns_yel              ; If not match, branch to check next state
+000181 c01c                          rjmp  led_ns_green            ; If match, jump to NS Green LED pattern routine
+                                 chk_ns_yel:
+000182 3001                          cpi   r16, STATE_NS_YELLOW    ; Compare state with NS Yellow (1)
+000183 f409                          brne  chk_ar1                 ; If not match, branch
+000184 c01c                          rjmp  led_ns_yellow           ; Jump to NS Yellow LED pattern routine
+                                 chk_ar1:
+000185 3002                          cpi   r16, STATE_ALL_RED_1    ; Compare state with All-Red 1 clearance (2)
+000186 f409                          brne  chk_ew_prep             ; If not match, branch
+000187 c01c                          rjmp  led_all_red             ; Jump to All-Red LED pattern routine
+                                 chk_ew_prep:
+000188 3003                          cpi   r16, STATE_EW_PREP      ; Compare state with EW Prep warning (3)
+000189 f409                          brne  chk_ew_grn              ; If not match, branch
+00018a c01f                          rjmp  led_ew_yellow           ; Jump to EW Yellow LED pattern routine (EW Pre-Green warning)
+                                 chk_ew_grn:
+00018b 3004                          cpi   r16, STATE_EW_GREEN     ; Compare state with EW Green (4)
+00018c f409                          brne  chk_ew_yel              ; If not match, branch
+00018d c019                          rjmp  led_ew_green            ; Jump to EW Green LED pattern routine
+                                 chk_ew_yel:
+00018e 3005                          cpi   r16, STATE_EW_YELLOW    ; Compare state with EW Yellow (5)
+00018f f409                          brne  chk_ar2                 ; If not match, branch
+000190 c019                          rjmp  led_ew_yellow           ; Jump to EW Yellow LED pattern routine
+                                 chk_ar2:
+000191 3006                          cpi   r16, STATE_ALL_RED_2    ; Compare state with All-Red 2 clearance (6)
+000192 f409                          brne  chk_ns_prep             ; If not match, branch
+000193 c010                          rjmp  led_all_red             ; Jump to All-Red LED pattern routine
+                                 chk_ns_prep:
+000194 3007                          cpi   r16, STATE_NS_PREP      ; Compare state with NS Prep warning (7)
+000195 f409                          brne  chk_ped                 ; If not match, branch
+000196 c00a                          rjmp  led_ns_yellow           ; Jump to NS Yellow LED pattern routine (NS Pre-Green warning)
+                                 chk_ped:
+000197 3008                          cpi   r16, STATE_PEDESTRIAN   ; Compare state with Pedestrian crossing (8)
+000198 f409                          brne  chk_night               ; If not match, branch
+000199 c00a                          rjmp  led_all_red             ; Jump to All-Red LED pattern routine (all red during pedestrian phase)
+                                 chk_night:
+00019a 3009                          cpi   r16, STATE_NIGHT        ; Compare state with Night Mode (9)
+00019b f409                          brne  led_ret                 ; If not match, branch to return
+00019c c010                          rjmp  led_night               ; Jump to Night Mode flashing LED pattern routine
+                                 led_ret:
+00019d 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_ns_green:
+00019e e00c                          ldi   r16, (1<<NS_GRN) | (1<<EW_RED) ; Create bitmask: turn ON North-South Green (PB2) and East-West Red (PB3)
+00019f b905                          out   PORTB, r16              ; Write LED output bitmask directly to PORTB data register
+0001a0 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_ns_yellow:
+0001a1 e00a                          ldi   r16, (1<<NS_YEL) | (1<<EW_RED) ; Create bitmask: turn ON North-South Yellow (PB1) and East-West Red (PB3)
+0001a2 b905                          out   PORTB, r16              ; Write bitmask to PORTB
+0001a3 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_all_red:
+0001a4 e009                          ldi   r16, (1<<NS_RED) | (1<<EW_RED) ; Create bitmask: turn ON both North-South Red (PB0) and East-West Red (PB3)
+0001a5 b905                          out   PORTB, r16              ; Write bitmask to PORTB
+0001a6 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_ew_green:
+0001a7 e201                          ldi   r16, (1<<NS_RED) | (1<<EW_GRN) ; Create bitmask: turn ON North-South Red (PB0) and East-West Green (PB5)
+0001a8 b905                          out   PORTB, r16              ; Write bitmask to PORTB
+0001a9 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_ew_yellow:
+0001aa e101                          ldi   r16, (1<<NS_RED) | (1<<EW_YEL) ; Create bitmask: turn ON North-South Red (PB0) and East-West Yellow (PB4)
+0001ab b905                          out   PORTB, r16              ; Write bitmask to PORTB
+0001ac 9508                          ret                           ; Return from subroutine
+                                 
+                                 led_night:
+0001ad 9110 0109                     lds   r17, flash_state        ; Load current night flash toggle state (0 or 1) from SRAM into r17
+0001af 2311                          tst   r17                     ; Test flash state value (sets Zero flag if r17 == 0)
+0001b0 f019                          breq  led_night_off           ; If Zero flag is set (flash state is 0), branch to turn night flash yellows OFF
+0001b1 e102                          ldi   r16, (1<<NS_YEL) | (1<<EW_YEL) ; If flash state is 1, create bitmask to turn ON both Yellow LEDs (PB1 and PB4)
+0001b2 b905                          out   PORTB, r16              ; Write bitmask to PORTB
+0001b3 9508                          ret                           ; Return from subroutine
+                                 led_night_off:
+0001b4 2700                          clr   r16                     ; Clear r16 (0x00)
+0001b5 b905                          out   PORTB, r16              ; Write 0x00 to PORTB to turn OFF both Yellow LEDs
+0001b6 9508                          ret                           ; Return from subroutine
+                                 
+                                 update_countdown_display:
+                                     ; Input: r19 = countdown value (0..5), or 10 for blank display.
+0001b7 930f                          push  r16                     ; Save register r16 onto stack
+0001b8 931f                          push  r17                     ; Save register r17 onto stack
+0001b9 93ef                          push  r30                     ; Save Z-pointer low register (r30) onto stack
+0001ba 93ff                          push  r31                     ; Save Z-pointer high register (r31) onto stack
+                                 
+0001bb 303a                          cpi   r19, 10                 ; Compare input value in r19 against 10 (blank index)
+0001bc f008                          brlo  load_tables             ; If r19 < 10 (valid digit 0-9), proceed to load segment lookup tables
+0001bd e03a                          ldi   r19, 10                 ; If r19 >= 10, force index to 10 (ensures safe fallback for blank display output)
+                                 
+                                 load_tables:
+                                     ; Fetch PORTD segment bit patterns (Segments A, B, C, D, E mapped to PD3..PD7)
+0001be ebe6                          ldi   ZL, low(countdown_portd_table * 2) ; Load low byte of Flash program memory table base address into ZL (multiplied by 2 for byte addressing)
+0001bf e0f3                          ldi   ZH, high(countdown_portd_table * 2); Load high byte of Flash table address into ZH
+0001c0 0fe3                          add   ZL, r19                 ; Add countdown digit index offset (0-10) to ZL pointer
+0001c1 2711                          clr   r17                     ; Clear r17 (0x00)
+0001c2 1ff1                          adc   ZH, r17                 ; Add carry bit to ZH high byte pointer if addition overflowed
+0001c3 9104                          lpm   r16, Z                  ; Load Program Memory byte from Flash address pointed by Z into r16
+                                 .IF COMMON_CATHODE
+0001c4 9500                          com   r16                     ; Invert active-low table values because hardware uses Common Cathode display (Active HIGH)
+0001c5 7f08                          andi  r16, 0b11111000         ; Apply bitmask to preserve only segment output pins PD3..PD7 (masking out PD0-PD2)
+                                 .ENDIF
+                                 
+0001c6 b11b                          in    r17, PORTD              ; Read current PORTD register state into r17
+0001c7 7017                          andi  r17, 0b00000111         ; Apply bitmask to preserve lower PORTD bits (PD0..PD2 button/UART lines)
+0001c8 2b01                          or    r16, r17                ; Combine calculated 7-segment output pattern with preserved lower PORTD bits
+0001c9 b90b                          out   PORTD, r16              ; Write final combined byte to PORTD output data register
+                                 
+                                     ; Fetch PORTC segment bit patterns (Segments F, G mapped to PC1, PC2)
+0001ca ece2                          ldi   ZL, low(countdown_portc_table * 2) ; Load low byte of PORTC segment Flash table address into ZL
+0001cb e0f3                          ldi   ZH, high(countdown_portc_table * 2); Load high byte of PORTC table address into ZH
+0001cc 0fe3                          add   ZL, r19                 ; Add digit index offset to ZL pointer
+0001cd 2711                          clr   r17                     ; Clear r17
+0001ce 1ff1                          adc   ZH, r17                 ; Add potential carry bit to ZH
+0001cf 9104                          lpm   r16, Z                  ; Load program memory segment byte from Flash into r16
+                                 .IF COMMON_CATHODE
+0001d0 9500                          com   r16                     ; Invert byte for Common Cathode active-HIGH display configuration
+0001d1 7006                          andi  r16, 0b00000110         ; Apply bitmask to preserve only segment pins PC1 and PC2
+                                 .ENDIF
+                                 
+0001d2 b118                          in    r17, PORTC              ; Read current PORTC register state into r17
+0001d3 7f19                          andi  r17, 0b11111001         ; Apply bitmask to preserve PC0 (LDR ADC input) and higher PC pins
+0001d4 2b01                          or    r16, r17                ; Combine calculated segment bits with preserved PORTC pins
+0001d5 b908                          out   PORTC, r16              ; Write final combined byte to PORTC output data register
+                                 
+0001d6 91ff                          pop   r31                     ; Restore Z-pointer high register from stack
+0001d7 91ef                          pop   r30                     ; Restore Z-pointer low register from stack
+0001d8 911f                          pop   r17                     ; Restore r17 register from stack
+0001d9 910f                          pop   r16                     ; Restore r16 register from stack
+0001da 9508                          ret                           ; Return from subroutine
+                                 
+                                 ;==============================================================================
+                                 ; SECTION 9: FLASH PROGRAM MEMORY LOOKUP TABLES (Digits 0-9)
+                                 ;==============================================================================
+                                 
+                                 ; Tables stored Active-Low (0 = Segment ON). Inverted automatically when COMMON_CATHODE = 1.
+                                 ; Indices 0..9 represent digits '0' through '9', Index 10 represents a blank display.
+                                 
+                                 countdown_portd_table:
+                                     ; Segments A, B, C, D, E mapped to PORTD pins PD3, PD4, PD5, PD6, PD7
+0001db c800                          .DB 0b00000000, 0b11001000    ; Flash data bytes for Digits '0' and '1' segment patterns
+0001dc 8020                          .DB 0b00100000, 0b10000000    ; Flash data bytes for Digits '2' and '3' segment patterns
+0001dd 90c8                          .DB 0b11001000, 0b10010000    ; Flash data bytes for Digits '4' and '5' segment patterns  
+0001de c010                          .DB 0b00010000, 0b11000000    ; Flash data bytes for Digits '6' and '7' segment patterns
+0001df 8000                          .DB 0b00000000, 0b10000000    ; Flash data bytes for Digits '8' and '9' segment patterns
+0001e0 00f8                          .DB 0b11111000, 0b00000000    ; Flash data bytes for Index 10 (Blank/Off display output) and byte alignment padding
+                                 
+                                 countdown_portc_table:
+                                     ; Segments F, G mapped to PORTC pins PC1, PC2
+0001e1 0604                          .DB 0b00000100, 0b00000110    ; Flash data bytes for Digits '0' and '1' segment patterns on PORTC
+0001e2 0202                          .DB 0b00000010, 0b00000010    ; Flash data bytes for Digits '2' and '3' segment patterns on PORTC
+0001e3 0000                          .DB 0b00000000, 0b00000000    ; Flash data bytes for Digits '4' and '5' segment patterns on PORTC
+0001e4 0600                          .DB 0b00000000, 0b00000110    ; Flash data bytes for Digits '6' and '7' segment patterns on PORTC
+0001e5 0000                          .DB 0b00000000, 0b00000000    ; Flash data bytes for Digits '8' and '9' segment patterns on PORTC
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATmega328P" register use summary:
+x  :   0 y  :   0 z  :   2 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   0 r16: 162 r17:  39 r18:   8 r19:  14 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r29:   0 r30:   6 r31:   6 
+Registers used: 7 out of 35 (20.0%)
+
+"ATmega328P" instruction use summary:
+.lds  :   0 .sts  :   0 adc   :   2 add   :   2 adiw  :   0 and   :   0 
+andi  :   5 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   3 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
+brne  :  25 brpl  :   0 brsh  :  11 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  12 cls   :   0 
+clt   :   0 clv   :   0 clz   :   0 com   :   3 cp    :   0 cpc   :   0 
+cpi   :  34 cpse  :   0 dec   :   1 eor   :   1 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   4 inc   :   2 jmp   :  26 
+ld    :   0 ldd   :   0 ldi   :  48 lds   :  27 lpm   :   4 lsl   :   0 
+lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   0 or    :   2 ori   :   1 out   :  21 pop   :   8 
+push  :   8 rcall :  16 ret   :  15 reti  :   3 rjmp  :  54 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   1 sbrs  :   0 sec   :   0 seh   :   0 
+sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   1 spm   :   0 st    :   0 std   :   0 sts   :  38 
+sub   :   0 subi  :   0 swap  :   0 tst   :   6 wdr   :   0 
+Instructions used: 32 out of 113 (28.3%)
+
+"ATmega328P" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x0003ce    950     24    974   32768   3.0%
+[.dseg] 0x000100 0x00010a      0     10     10    2048   0.5%
+[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
+
+Assembly complete, 0 errors, 0 warnings

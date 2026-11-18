@@ -1,0 +1,114 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\Debug\ESD_Assignment.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>ESD_Assignment.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>ESD_Assignment.map</FILE>
+  <FILE>ESD_Assignment.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <current_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>78</LINE></current_state>
+  <seconds_in_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>79</LINE></seconds_in_state>
+  <resume_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>80</LINE></resume_state>
+  <pedestrian_flag><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>81</LINE></pedestrian_flag>
+  <pedestrian_countdown><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>82</LINE></pedestrian_countdown>
+  <hysteresis_counter><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>83</LINE></hysteresis_counter>
+  <adc_result><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>84</LINE></adc_result>
+  <tick_flag><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>85</LINE></tick_flag>
+  <half_tick_counter><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>86</LINE></half_tick_counter>
+  <flash_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>87</LINE></flash_state>
+  <RESET><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>128</LINE></RESET>
+  <ISR_INT0><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>241</LINE></ISR_INT0>
+  <DEFAULT_ISR><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>121</LINE></DEFAULT_ISR>
+  <ISR_TIMER1_COMPA><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>261</LINE></ISR_TIMER1_COMPA>
+  <init_ports><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>183</LINE></init_ports>
+  <init_timer1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>203</LINE></init_timer1>
+  <init_adc><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>220</LINE></init_adc>
+  <init_int0><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>229</LINE></init_int0>
+  <update_leds_for_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>554</LINE></update_leds_for_state>
+  <update_countdown_display><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>636</LINE></update_countdown_display>
+  <main_loop><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>166</LINE></main_loop>
+  <do_tick><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>173</LINE></do_tick>
+  <handle_tick><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>278</LINE></handle_tick>
+  <int0_exit><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>255</LINE></int0_exit>
+  <read_adc><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>542</LINE></read_adc>
+  <check_darkness><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>286</LINE></check_darkness>
+  <process_night_mode><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>503</LINE></process_night_mode>
+  <tick_timer><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>293</LINE></tick_timer>
+  <enter_night_mode><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>492</LINE></enter_night_mode>
+  <second_elapsed><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>303</LINE></second_elapsed>
+  <exit_tick><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>535</LINE></exit_tick>
+  <increment_timer><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>310</LINE></increment_timer>
+  <process_pedestrian_countdown><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>462</LINE></process_pedestrian_countdown>
+  <skip_ns_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>320</LINE></skip_ns_green>
+  <check_ns_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>360</LINE></check_ns_green>
+  <skip_ns_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>325</LINE></skip_ns_yellow>
+  <check_ns_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>369</LINE></check_ns_yellow>
+  <skip_all_red_1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>330</LINE></skip_all_red_1>
+  <check_all_red_1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>378</LINE></check_all_red_1>
+  <skip_ew_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>335</LINE></skip_ew_prep>
+  <check_ew_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>396</LINE></check_ew_prep>
+  <skip_ew_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>340</LINE></skip_ew_green>
+  <check_ew_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>405</LINE></check_ew_green>
+  <skip_ew_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>345</LINE></skip_ew_yellow>
+  <check_ew_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>414</LINE></check_ew_yellow>
+  <skip_all_red_2><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>350</LINE></skip_all_red_2>
+  <check_all_red_2><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>423</LINE></check_all_red_2>
+  <skip_ns_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>355</LINE></skip_ns_prep>
+  <check_ns_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>441</LINE></check_ns_prep>
+  <end_ns_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>365</LINE></end_ns_green>
+  <change_state><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>483</LINE></change_state>
+  <end_ns_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>374</LINE></end_ns_yellow>
+  <end_all_red_1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>383</LINE></end_all_red_1>
+  <ped_from_ar1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>390</LINE></ped_from_ar1>
+  <start_pedestrian_phase><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>451</LINE></start_pedestrian_phase>
+  <end_ew_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>401</LINE></end_ew_prep>
+  <end_ew_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>410</LINE></end_ew_green>
+  <end_ew_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>419</LINE></end_ew_yellow>
+  <end_all_red_2><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>428</LINE></end_all_red_2>
+  <ped_from_ar2><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>435</LINE></ped_from_ar2>
+  <end_ns_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>446</LINE></end_ns_prep>
+  <countdown_not_zero><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>467</LINE></countdown_not_zero>
+  <end_pedestrian_phase><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>477</LINE></end_pedestrian_phase>
+  <countdown_still_going><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>474</LINE></countdown_still_going>
+  <bright_light_detected><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>517</LINE></bright_light_detected>
+  <reset_hysteresis><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>531</LINE></reset_hysteresis>
+  <hysteresis_complete><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>526</LINE></hysteresis_complete>
+  <wait_adc><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>546</LINE></wait_adc>
+  <chk_ns_yel><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>560</LINE></chk_ns_yel>
+  <led_ns_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>599</LINE></led_ns_green>
+  <chk_ar1><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>564</LINE></chk_ar1>
+  <led_ns_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>604</LINE></led_ns_yellow>
+  <chk_ew_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>568</LINE></chk_ew_prep>
+  <led_all_red><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>609</LINE></led_all_red>
+  <chk_ew_grn><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>572</LINE></chk_ew_grn>
+  <led_ew_yellow><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>619</LINE></led_ew_yellow>
+  <chk_ew_yel><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>576</LINE></chk_ew_yel>
+  <led_ew_green><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>614</LINE></led_ew_green>
+  <chk_ar2><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>580</LINE></chk_ar2>
+  <chk_ns_prep><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>584</LINE></chk_ns_prep>
+  <chk_ped><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>588</LINE></chk_ped>
+  <chk_night><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>592</LINE></chk_night>
+  <led_ret><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>596</LINE></led_ret>
+  <led_night><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>624</LINE></led_night>
+  <led_night_off><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>631</LINE></led_night_off>
+  <load_tables><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>647</LINE></load_tables>
+  <countdown_portd_table><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>695</LINE></countdown_portd_table>
+  <countdown_portc_table><FILE>C:\Users\LOQ\OneDrive\Documents\Atmel Studio\7.0\ESD_Assignment\ESD_Assignment\main.asm</FILE><LINE>704</LINE></countdown_portc_table>
+ </LABELS>
+</ASSEMBLER_INFO>
